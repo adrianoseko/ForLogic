@@ -1,0 +1,36 @@
+<div style="margin-left: 1%; margin-top: 1%;">
+    <p-calendar placeholder="Data Inicial" id="dataInicial" name="dataInicial" [(ngModel)]="dataInicial" appendToBody
+        [showIcon]="true"></p-calendar>
+    <p-calendar style="margin-left: 1%;" placeholder="Data Final" id="dataFinal" name="dataFinal"
+        [(ngModel)]="dataFinal" appendToBody [showIcon]="true"></p-calendar>
+    <p-button label="Filtrar" (click)="filtro()"></p-button>
+</div>
+<div style="margin-top: 1%; margin-left: 1%;">
+    <table border="1" style="background-color: gray;">
+        <tr>
+            <th>Participantes</th>
+            <th>Qtd</th>
+
+        </tr>
+        <tr>
+            <td>Promotores</td>
+            <td>{{ promotor }}</td>
+        </tr>
+        <tr>
+            <td>Neutros</td>
+            <td>{{ neutro }}</td>
+        </tr>
+        <tr>
+            <td>Detratores</td>
+            <td>{{ detrator }}</td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td>{{ total }}</td>
+        </tr>
+        <tr>
+            <td>NPS</td>
+            <td style="color: {{color}};">{{ result }}</td>
+        </tr>
+    </table>
+</div>

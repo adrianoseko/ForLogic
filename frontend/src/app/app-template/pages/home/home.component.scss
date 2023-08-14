@@ -1,0 +1,27 @@
+.posts-container {
+  display: flex;
+  margin-top: 0.5em;
+  width: 100%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.favorites-container {
+  display: flex;
+  margin-top: 1em;
+  width: 25%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.full-container {
+  display: flex;
+  max-width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2%;
+}
+
+.search-container {
+  width: 100%;
+}

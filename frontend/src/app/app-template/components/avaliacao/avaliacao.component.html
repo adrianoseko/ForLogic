@@ -1,0 +1,41 @@
+<div style="margin-left: 90%; margin-top: 1%;">
+    <p-button icon="pi pi-user-plus" (click)="openAvaliacao()"></p-button>
+</div>
+<div style="margin-top: 1%;">
+    <p-table [value]="avaliacoes" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Cliente</th>
+                <th>Nota</th>
+                <th>Motivo</th>
+                <th>Data Avaliação</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-avaliacoes>
+            <tr>
+                <td>{{avaliacoes.client}}</td>
+                <td>{{avaliacoes.nota}}</td>
+                <td>{{avaliacoes.motivo}}</td>
+                <td>{{avaliacoes.dataAvaliacao}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="avaliacaoDialog" [style]="{ width: '50%'}" header="Nova Avaliação" [modal]="true"
+    styleClass="p-fluid">
+    <form action="/pagina-processa-dados-do-form" appendTo="body" [formGroup]="form" method="post">
+        <p-dropdown [options]="clientes" formControlName="client" appendTo="body" optionLabel="nameClient"
+            placeholder="Selecione um Cliente" value="id"></p-dropdown>
+        <div style="margin-top: 1%;">
+            <p>Em uma escala de 0 a 10, qual a probabilidade de você recomendar nosso produto/serviço a um
+                amigo/conhecido?
+            </p>
+            <p-inputNumber formControlName="nota" [min]="0" [max]="10" [showButtons]="true">
+            </p-inputNumber>
+        </div>
+        <textarea style="margin-top: 1%;" formControlName="motivo" placeholder="Qual é o motivo dessa nota?"
+            pInputTextarea rows="3" cols="20"></textarea>
+    </form>
+    <p-button label="Submit" (click)="postAvaliacao()"></p-button>
+</p-dialog>

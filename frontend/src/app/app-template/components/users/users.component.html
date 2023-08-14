@@ -1,0 +1,17 @@
+<div style="margin-left: 90%; margin-top: 1%;">
+    <p-button icon="pi pi-user-plus"></p-button>
+</div>
+<div style="margin-top: 1%;">
+    <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Usuário</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr>
+                <td>{{user.login}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

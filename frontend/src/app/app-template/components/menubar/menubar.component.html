@@ -1,0 +1,14 @@
+<p-menubar styleClass="menubar-layout" [model]="items">
+  <ng-template pTemplate="start">
+    <div style="display: flex; float: left">
+      <app-side-menu></app-side-menu>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="end">
+    <p class="mobile-hide" style="float: left; margin: 5px 50px 0 0; padding: 0">
+      Bem-vindo
+    </p>
+    <button #btn type="button" class="p-menubar btn-side-menu" pButton icon="pi pi-power-off"
+      (click)="sairIAS()"></button>
+  </ng-template>
+</p-menubar>

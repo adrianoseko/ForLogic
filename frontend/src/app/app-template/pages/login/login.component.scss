@@ -1,0 +1,107 @@
+.p-inputtext:enabled,
+.p-inputtext:enabled:focus,
+input {
+  background-color: #fff !important;
+  background: #fff !important;
+}
+
+.logo-login {
+  width: 20%;
+}
+
+.toast-style {
+  position: center;
+}
+
+@media only screen and (max-width: 800px) {
+  #login-area-content {
+    position: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 12px -5px 5px -13px #000;
+    z-index: 7;
+  }
+
+  .p-text-center {
+    color: white;
+  }
+
+  .link-login {
+    color: white;
+  }
+
+  .lock-mobile {
+    color: white;
+  }
+
+  #login-area {
+    width: 100%;
+  }
+}
+
+.font-logo {
+  margin-top: 30%;
+  text-decoration: none;
+  width: 100%;
+  color: black;
+  font-size: 5rem;
+  //text-align: center !important;
+  font-family: "Russo One";
+  text-transform: uppercase;
+}
+
+// spinner style
+
+:host ::ng-deep .custom-spinner .p-progress-spinner-circle {
+  animation: none;
+  stroke: #000;
+}
+
+.frames {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.p-progress-spinner-circle {
+  stroke: black;
+}
+
+:host ::ng-deep .custom-spinner .p-progress-spinner-circle {
+  animation: custom-progress-spinner-color;
+  width: 100% !important;
+  height: 70px !important;
+  margin-top: 60% !important;
+}
+
+@keyframes p-progress-spinner-color {
+
+  100%,
+  0% {
+    stroke: black !important;
+  }
+
+  40% {
+    stroke: gray !important;
+  }
+
+  66% {
+    stroke: black !important;
+  }
+
+  80%,
+  90% {
+    stroke: gray !important;
+  }
+}
+
+.spin-container {
+  width: 100%;
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+}

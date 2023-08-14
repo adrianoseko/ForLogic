@@ -1,0 +1,41 @@
+<div style="margin-left: 90%; margin-top: 1%;">
+    <p-button icon="pi pi-user-plus" (click)="openClientForm()"></p-button>
+</div>
+<div style="margin-top: 1%;">
+    <p-table [value]="clientes" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Cliente</th>
+                <th>Responsavel</th>
+                <th>Cnpj</th>
+                <th>Tipo Cliente</th>
+                <th>Data Cadastro</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-client>
+            <tr>
+                <td>{{client.nameClient}}</td>
+                <td>{{client.respClient}}</td>
+                <td>{{client.cnpj}}</td>
+                <td>{{client.tipoClient}}</td>
+                <td>{{client.dataCadastro}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="clientDialog" [style]="{ width: '50%'}" header="Novo Cliente" [modal]="true"
+    styleClass="p-fluid">
+    <form action="/pagina-processa-dados-do-form" appendTo="body" [formGroup]="form" method="post">
+        <input style="margin-top: 1%;" formControlName="NameClient" type="text" placeholder="Nome/Rasão Social:"
+            pInputText />
+        <input style="margin-top: 1%;" formControlName="RespClient" type="text" placeholder="Responsavel pela empresa"
+            pInputText />
+        <div style="margin-top: 1%;">
+            <p-inputNumber placeholder="CNPJ" formControlName="Cnpj" inputId="integeronly"> </p-inputNumber>
+        </div>
+    </form>
+    <div style="margin-top: 1%;">
+        <p-button label="Submit" (click)="postClient()"></p-button>
+    </div>
+</p-dialog>

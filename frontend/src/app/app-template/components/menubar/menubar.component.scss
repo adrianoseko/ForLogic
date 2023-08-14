@@ -1,0 +1,40 @@
+.logo-layout {
+  width: 60px !important;
+  float: left;
+  margin-left: 5%;
+  border: 0px !important;
+  border-radius: 0px !important;
+}
+
+.p-menubar {
+  border: 0px !important;
+  border-radius: 0px !important;
+}
+
+.menubar-line {
+  position: inherit !important; // TODO: consertar responsividade
+}
+
+.menubar-layout {
+  width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+  .mobile-hide {
+    display: none !important;
+  }
+}
+
+.font-logo {
+  text-decoration: none;
+  width: 100%;
+  color: white;
+  //text-align: center !important;
+  font-family: "Russo One";
+  font-size: larger;
+  text-transform: uppercase;
+}
+
+.font-logo-modality {
+  font-family: "Raleway", sans-serif;
+}

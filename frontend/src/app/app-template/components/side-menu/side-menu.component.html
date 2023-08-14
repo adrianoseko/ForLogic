@@ -1,0 +1,14 @@
+<button
+  #btn
+  class="p-menubar btn-side-menu"
+  type="button"
+  pButton
+  icon="pi pi-bars"
+  (click)="menu.toggle($event)"
+></button>
+<p-slideMenu
+  #menu
+  [model]="items"
+  [popup]="true"
+  [viewportHeight]="500"
+></p-slideMenu>

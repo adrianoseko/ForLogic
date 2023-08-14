@@ -1,0 +1,24 @@
+<app-menubar></app-menubar>
+<div>
+  <p-card header="Bem Vindo !">
+    <p class="m-0">
+      Selecione ação que deseja realizar:
+    </p>
+    <div style="margin-top: 1%;">
+      <tr>
+        <td>
+          <p-selectButton [options]="paymentOptions" [(ngModel)]="value" [multiple]="true" optionLabel="name"
+            optionValue="value" (click)="onPaymentOptionChange()"></p-selectButton>
+        </td>
+        <td>
+          <p-button icon="pi pi-backward" (click)="backHome()"></p-button>
+        </td>
+      </tr>
+    </div>
+  </p-card>
+</div>
+
+<app-cliente *ngIf="selectedAction == 1"></app-cliente>
+<app-avaliacao *ngIf="selectedAction == 2"></app-avaliacao>
+<app-users *ngIf="selectedAction == 3"></app-users>
+<app-nps *ngIf="selectedAction == 4"></app-nps>
