@@ -1,3 +1,3 @@
 # ForLogic
 Desafio Forlogic  c# e Angular
-Utilizar usuario admin e senha admin para acessar o sistema 
+Fazer um insert na tabela useres para adicionar um login e senha antes de acessar o sistema.
