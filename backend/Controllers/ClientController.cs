@@ -1,92 +1,74 @@
 using Microsoft.AspNetCore.Mvc;
 using client.Repository;
 using client.Model;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace client.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-
     public class ClientController : ControllerBase
     {
-        private readonly IClientRepository repository;
+        private readonly IClientRepository _repository;
 
         public ClientController(IClientRepository repository)
         {
-            this.repository = repository;
+            _repository = repository;
         }
 
         [HttpGet]
-
-        public async Task<IActionResult> GetAsync()
+        public async Task<IActionResult> GetAllClientsAsync()
         {
-            var client = await this.repository.BuscaClients();
-            return client.Any() ? Ok(client) : NoContent();
+            var clients = await _repository.BuscaClients();
+            return clients.Any() ? Ok(clients) : NoContent();
         }
 
-
         [HttpGet("{cnpj}")]
-
-        public async Task<IActionResult> GetById(int cnpj)
+        public async Task<IActionResult> GetClientByCnpjAsync(int cnpj)
         {
-            var client = await this.repository.BuscaClient(cnpj);
+            var client = await _repository.BuscaClient(cnpj);
             return client != null ? Ok(client) : NoContent();
         }
 
         [HttpPatch("{cnpj}")]
-
-        public async Task<IActionResult> Patch(int id, Client client)
+        public async Task<IActionResult> UpdateClientAsync(int cnpj, Client client)
         {
-            var clientdb = await this.repository.BuscaClient(id);
-            if (clientdb == null)
-                return NotFound("Usuario Não Encontrado");
-            this.repository.EditClient(client);
+            var existingClient = await _repository.BuscaClient(cnpj);
+            if (existingClient == null)
+                return NotFound("Cliente não encontrado");
 
-            return await this.repository.SaveChangeAsync() ? Ok("Salvo") : BadRequest("Erro");
-
+            _repository.EditClient(client);
+            return await SaveChangesAsync("Erro ao atualizar cliente");
         }
 
         [HttpDelete("{cnpj}")]
-
-        public async Task<IActionResult> Delete(int cnpj)
+        public async Task<IActionResult> DeleteClientAsync(int cnpj)
         {
-            var clientdb = await this.repository.BuscaClient(cnpj);
-            if (clientdb == null) return NotFound("Usuario Não Encontrado");
+            var existingClient = await _repository.BuscaClient(cnpj);
+            if (existingClient == null) return NotFound("Cliente não encontrado");
 
-
-
-            this.repository.DeleteClient(clientdb);
-
-            return await this.repository.SaveChangeAsync() ? Ok("Deletado") : BadRequest("Erro");
-
+            _repository.DeleteClient(existingClient);
+            return await SaveChangesAsync("Erro ao deletar cliente");
         }
 
         [HttpPost]
-
-        public async Task<IActionResult> Post(Client client)
+        public async Task<IActionResult> CreateClientAsync(Client client)
         {
-            var clientdb = await this.repository.BuscaClient(client.Cnpj);
-            if (clientdb != null)
+            var existingClient = await _repository.BuscaClient(client.Cnpj);
+            if (existingClient != null)
             {
-                return Conflict("Cliente Já Cadastrado"); // Return 409 Conflict status code for an existing client
+                return Conflict("Cliente já cadastrado");
             }
 
-            this.repository.AddClient(client);
-            var saveResult = await this.repository.SaveChangeAsync();
+            _repository.AddClient(client);
+            return await SaveChangesAsync("Erro ao salvar cliente");
+        }
 
-            if (saveResult)
-            {
-                return Ok(clientdb); // Return the added client object
-            }
-            else
-            {
-                return BadRequest("Erro ao salvar");
-            }
-
-
-
-
-
+        private async Task<IActionResult> SaveChangesAsync(string errorMessage)
+        {
+            var saveResult = await _repository.SaveChangeAsync();
+            return saveResult ? Ok() : BadRequest(errorMessage);
         }
     }
 }
