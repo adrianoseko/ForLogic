@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FavoriteAppsComponent } from './favorite-apps.component';
 
 describe('FavoriteAppsComponent', () => {
@@ -8,9 +7,8 @@ describe('FavoriteAppsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FavoriteAppsComponent ]
-    })
-    .compileComponents();
+      declarations: [FavoriteAppsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('FavoriteAppsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the FavoriteAppsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
