@@ -1,14 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
 import { Router } from '@angular/router';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-
-import { Login } from './login';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
 import { MessageService } from 'primeng/api';
 
@@ -19,57 +11,64 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
-  loginform: any = [];
-  form: FormGroup;
-  currentCollection: any = [];
-  authusergroup: any = [];
-  display: any;
-  username: string;
-  password: string;
-  msgs: any = [];
-  inProgress: boolean;
+  loginForm: FormGroup;
+  submitted: boolean = false;
+  inProgress: boolean = false;
+  msgs: any[] = [];
 
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private messageService: MessageService
-  ) { }
+    private messageService: MessageService,
+    private formBuilder: FormBuilder
+  ) {}
 
-  // -----
-  loginForm: FormGroup;
+  ngOnInit(): void {
+    this.initializeForm();
+    this.resetLocalStorage();
+  }
 
-  submitted = false;
-
-  ngOnInit() {
-    this.inProgress = false;
-    localStorage.modality_name = '';
-    this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+  private initializeForm(): void {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
 
-  public onSubmit() {
+  private resetLocalStorage(): void {
+    localStorage.clear();
+    localStorage.setItem('modality_name', '');
+    localStorage.setItem('host', 'http://localhost');
+    localStorage.setItem('inicio', '0');
+    localStorage.setItem('display', 'false');
+  }
+
+  public onSubmit(): void {
     this.inProgress = true;
     this.submitted = true;
-    localStorage.username = this.loginform.username;
-    localStorage.host = 'http://localhost';
-    localStorage.inicio = 0;
-    localStorage.display = false;
 
-    this.loginService
-      .logar(this.loginform.username, this.loginform.password)
-      .subscribe(
-        (data) => {
-          console.log(data);
+    if (this.loginForm.invalid) {
+      this.inProgress = false;
+      return;
+    }
 
-          this.router.navigate(['home/']);
+    const { username, password } = this.loginForm.value;
+    localStorage.setItem('username', username);
 
-          localStorage.wlcbox = true;
-        }
-      );
+    this.loginService.logar(username, password).subscribe({
+      next: (data) => this.handleLoginSuccess(data),
+      error: () => this.handleLoginError(),
+    });
   }
-  public show() {
+
+  private handleLoginSuccess(data: any): void {
+    console.log(data);
+    this.router.navigate(['home/']);
+    localStorage.setItem('wlcbox', 'true');
+  }
+
+  private handleLoginError(): void {
+    this.inProgress = false;
     this.msgs.push({
       severity: 'error',
       summary: 'Credenciais incorretas!',
@@ -77,7 +76,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public hide() {
+  public hideMessages(): void {
     this.msgs = [];
   }
 }
