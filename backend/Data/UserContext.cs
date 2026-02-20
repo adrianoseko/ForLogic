@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using users.Model;
 
-
 namespace user.Data
 {
     public class UserContext : DbContext
@@ -12,12 +11,13 @@ namespace user.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var user = modelBuilder.Entity<Users>();
-            user.Property(x => x.Id).ValueGeneratedOnAdd();
-
+            ConfigureUserEntity(modelBuilder);
         }
 
+        private void ConfigureUserEntity(ModelBuilder modelBuilder)
+        {
+            var userEntity = modelBuilder.Entity<Users>();
+            userEntity.Property(u => u.Id).ValueGeneratedOnAdd();
+        }
     }
-
-
 }
