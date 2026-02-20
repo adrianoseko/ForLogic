@@ -1,91 +1,95 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import { MenubarService } from './menubar.service';
 import { MenuItem } from 'primeng/api';
-import { MegaMenuItem } from 'primeng/api'; // required when using MegaMenu
 
 @Component({
   selector: 'app-menubar',
   templateUrl: './menubar.component.html',
   styleUrls: ['./menubar.component.scss'],
 })
-export class MenubarComponent {
-  items: MenuItem[];
-  username: string;
-  // tslint:disable-next-line: variable-name
-  dp_items: any[];
-  departments: any[];
-  modalityName: any;
-  modalityLegend: any;
-  categoryName: any;
-  categoryLegend: any;
+export class MenubarComponent implements OnInit {
+  items: MenuItem[] = [];
+  username: string = '';
+  departmentItems: MenuItem[] = [];
+  departments: any[] = [];
 
   constructor(
     private primengConfig: PrimeNGConfig,
     private router: Router,
     private menubarService: MenubarService
-  ) { }
+  ) {}
 
-  // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit(): void {
-    this.modalityName = localStorage.modality_name;
-    this.modalityLegend = localStorage.modality_legend;
-    this.categoryName = localStorage.category_name;
-    this.categoryLegend = localStorage.category_legend;
-
-
-
+    this.initializeUserData();
     this.primengConfig.ripple = true;
-
-    this.username = JSON.parse(localStorage.user).first_name;
-
-    // this.listDepartments();
-
-    // this.createMenu();
+    this.loadDepartments();
   }
-  // tslint:disable-next-line: typedef
-  public createMenu() {
+
+  private initializeUserData(): void {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.username = JSON.parse(user).first_name;
+    }
+    this.loadLocalStorageData();
+  }
+
+  private loadLocalStorageData(): void {
+    this.modalityName = localStorage.getItem('modality_name') || '';
+    this.modalityLegend = localStorage.getItem('modality_legend') || '';
+    this.categoryName = localStorage.getItem('category_name') || '';
+    this.categoryLegend = localStorage.getItem('category_legend') || '';
+  }
+
+  private loadDepartments(): void {
     this.menubarService.getDepartments().subscribe(
-      (response) => {
-        this.departments = response;
-        this.dp_items = this.departments.map((dp) => {
-          return { label: dp.name, url: '#department/' + dp.id };
-        });
-        this.items = [
-          {
-            label: 'Departamentos',
-            icon: 'pi pi-fw pi-bookmark',
-            items: this.dp_items,
-          },
-          {
-            label: 'Gerenciar',
-            icon: 'pi pi-fw pi-cog',
-            items: [
-              {
-                label: 'Departamentos',
-                icon: 'pi pi-fw pi-briefcase',
-                url: '#department-crud',
-              },
-              {
-                label: 'Postagens',
-                icon: 'pi pi-fw pi-comments',
-                url: '#post-crud',
-              },
-            ],
-          },
-        ];
-      },
-      (error) => {
-        alert('Houve algum erro ao carregar a lista.');
-      }
+      (response) => this.handleDepartmentsResponse(response),
+      (error) => this.handleError(error)
     );
   }
 
-  // tslint:disable-next-line: typedef
-  public sairIAS() {
+  private handleDepartmentsResponse(response: any): void {
+    this.departments = response;
+    this.departmentItems = this.departments.map((dp) => ({
+      label: dp.name,
+      url: `#department/${dp.id}`,
+    }));
+    this.buildMenuItems();
+  }
+
+  private buildMenuItems(): void {
+    this.items = [
+      {
+        label: 'Departamentos',
+        icon: 'pi pi-fw pi-bookmark',
+        items: this.departmentItems,
+      },
+      {
+        label: 'Gerenciar',
+        icon: 'pi pi-fw pi-cog',
+        items: [
+          {
+            label: 'Departamentos',
+            icon: 'pi pi-fw pi-briefcase',
+            url: '#department-crud',
+          },
+          {
+            label: 'Postagens',
+            icon: 'pi pi-fw pi-comments',
+            url: '#post-crud',
+          },
+        ],
+      },
+    ];
+  }
+
+  private handleError(error: any): void {
+    console.error('Error loading departments:', error);
+    alert('Houve algum erro ao carregar a lista.');
+  }
+
+  public logout(): void {
     localStorage.clear();
     this.router.navigate(['login/']);
   }
