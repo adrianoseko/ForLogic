@@ -1,22 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment as env } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NpsService {
 
-  constructor(private http: HttpClient) { }
+  private readonly apiUrl: string;
 
+  constructor(private http: HttpClient) {
+    this.apiUrl = `${environment.baseApiUrl}/api/Avaliacao`;
+  }
 
-  getAvaliacao(): Observable<any> {
-    const header = new HttpHeaders().set(
-      'Content-Type',
-      'application/json; charset=utf-8'
-    );
-    console.log(env.baseApiUrl);
-    return this.http.get<any>('https://localhost:7136/api/Avaliacao')
+  public getAvaliacao(): Observable<any> {
+    const headers = this.createHeaders();
+    return this.http.get<any>(this.apiUrl, { headers });
+  }
+
+  private createHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8'
+    });
   }
 }
