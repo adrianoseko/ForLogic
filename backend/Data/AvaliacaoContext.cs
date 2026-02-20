@@ -1,22 +1,23 @@
 using Microsoft.EntityFrameworkCore;
-using avaliacao.Model;
+using Avaliacao.Model;
 
-
-namespace avaliacao.Data
+namespace Avaliacao.Data
 {
     public class AvaliacaoContext : DbContext
     {
         public AvaliacaoContext(DbContextOptions<AvaliacaoContext> options) : base(options) { }
 
-        public DbSet<Avaliacao> Avaliacao { get; set; }
+        public DbSet<Avaliacao> Avaliacoes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var avaliacao = modelBuilder.Entity<Avaliacao>();
-            avaliacao.Property(x => x.Id).ValueGeneratedOnAdd();
+            ConfigureAvaliacaoEntity(modelBuilder);
         }
 
-
-
+        private void ConfigureAvaliacaoEntity(ModelBuilder modelBuilder)
+        {
+            var avaliacaoEntity = modelBuilder.Entity<Avaliacao>();
+            avaliacaoEntity.Property(x => x.Id).ValueGeneratedOnAdd();
+        }
     }
 }
