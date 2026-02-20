@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -7,25 +6,25 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class FavoriteAppsService {
-  url = localStorage.host + ':8000/app-index-favorites/';
+  private readonly apiUrl: string;
 
-  constructor(private http: HttpClient) {}
-
-  public getApps(): Observable<any> {
-    const header = new HttpHeaders().set(
-      'Authorization',
-      'token ' + localStorage.token
-    );
-    return this.http.get(this.url, { headers: header });
+  constructor(private http: HttpClient) {
+    this.apiUrl = `${localStorage.host}:8000/app-index-favorites/`;
   }
 
-  public addHit(index: any): Observable<any> {
-    const header = new HttpHeaders().set(
-      'Authorization',
-      'token ' + localStorage.token
-    );
-    return this.http.put<any>(this.url + index.id + '/', index, {
-      headers: header,
-    });
+  public getApps(): Observable<any> {
+    return this.http.get(this.apiUrl, { headers: this.createAuthorizationHeader() });
+  }
+
+  public addHit(app: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}${app.id}/`, app, { headers: this.createAuthorizationHeader() });
+  }
+
+  private createAuthorizationHeader(): HttpHeaders {
+    const token = localStorage.token;
+    if (!token) {
+      throw new Error('Authorization token is missing');
+    }
+    return new HttpHeaders().set('Authorization', `token ${token}`);
   }
 }

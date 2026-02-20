@@ -20,4 +20,4 @@ import { ButtonModule } from 'primeng/button';
   declarations: [MenubarComponent],
   bootstrap: [MenubarComponent],
 })
-export class MyMenubarModule {}
+export class MenubarModule {}

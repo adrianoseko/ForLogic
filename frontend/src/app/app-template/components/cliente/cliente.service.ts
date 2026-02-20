@@ -1,34 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment as env } from '../../../../environments/environment';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClientService {
-  private readonly PATH: string = '';
+  private readonly apiUrl: string = `${environment.baseApiUrl}/api/Client`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getClientes(): Observable<any> {
-    const header = new HttpHeaders().set(
-      'Content-Type',
-      'application/json; charset=utf-8'
-    );
-    console.log(env.baseApiUrl);
-    return this.http.get<any>('https://localhost:7136/api/Client')
+  getClients(): Observable<any> {
+    return this.http.get<any>(this.apiUrl, this.getHttpOptions());
   }
 
-  postClient(form) {
-    const header = new HttpHeaders().set(
-      'Content-Type',
-      'application/json; charset=utf-8'
-    );
-    console.log(form);
-    return this.http.post('https://localhost:7136/api/Client', form)
+  postClient(clientData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, clientData, this.getHttpOptions());
   }
 
-
+  private getHttpOptions(): { headers: HttpHeaders } {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+    });
+    return { headers };
+  }
 }

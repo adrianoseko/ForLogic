@@ -34,35 +34,50 @@ namespace client.Controllers
         [HttpPatch("{cnpj}")]
         public async Task<IActionResult> UpdateClientAsync(int cnpj, Client client)
         {
+            if (client == null)
+            {
+                return BadRequest("Client data is required.");
+            }
+
             var existingClient = await _repository.BuscaClient(cnpj);
             if (existingClient == null)
-                return NotFound("Cliente não encontrado");
+            {
+                return NotFound("Client not found.");
+            }
 
             _repository.EditClient(client);
-            return await SaveChangesAsync("Erro ao atualizar cliente");
+            return await SaveChangesAsync("Error updating client.");
         }
 
         [HttpDelete("{cnpj}")]
         public async Task<IActionResult> DeleteClientAsync(int cnpj)
         {
             var existingClient = await _repository.BuscaClient(cnpj);
-            if (existingClient == null) return NotFound("Cliente não encontrado");
+            if (existingClient == null)
+            {
+                return NotFound("Client not found.");
+            }
 
             _repository.DeleteClient(existingClient);
-            return await SaveChangesAsync("Erro ao deletar cliente");
+            return await SaveChangesAsync("Error deleting client.");
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateClientAsync(Client client)
         {
+            if (client == null)
+            {
+                return BadRequest("Client data is required.");
+            }
+
             var existingClient = await _repository.BuscaClient(client.Cnpj);
             if (existingClient != null)
             {
-                return Conflict("Cliente já cadastrado");
+                return Conflict("Client already registered.");
             }
 
             _repository.AddClient(client);
-            return await SaveChangesAsync("Erro ao salvar cliente");
+            return await SaveChangesAsync("Error saving client.");
         }
 
         private async Task<IActionResult> SaveChangesAsync(string errorMessage)

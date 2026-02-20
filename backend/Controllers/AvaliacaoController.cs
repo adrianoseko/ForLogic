@@ -1,89 +1,85 @@
 using Microsoft.AspNetCore.Mvc;
 using avaliacao.Repository;
 using avaliacao.Model;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace avaliacao.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-
     public class AvaliacaoController : ControllerBase
     {
-        private readonly IAvaliacaoRepository repository;
+        private readonly IAvaliacaoRepository _repository;
 
         public AvaliacaoController(IAvaliacaoRepository repository)
         {
-            this.repository = repository;
+            _repository = repository;
         }
 
         [HttpGet]
-
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAllAvaliacoes()
         {
-            var avaliacoes = await this.repository.BuscaAvaliacoes();
+            var avaliacoes = await _repository.BuscaAvaliacoes();
             return avaliacoes.Any() ? Ok(avaliacoes) : NoContent();
         }
 
         [HttpGet("{id}")]
-
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetAvaliacaoById(int id)
         {
-            var user = await this.repository.BuscaAvaliacao(id);
-            return user != null ? Ok(user) : NoContent();
+            var avaliacao = await _repository.BuscaAvaliacao(id);
+            return avaliacao != null ? Ok(avaliacao) : NoContent();
         }
 
-
         [HttpPost]
-        public async Task<IActionResult> Post(Avaliacao avaliacao)
+        public async Task<IActionResult> CreateAvaliacao(Avaliacao avaliacao)
         {
-            var avaliacaoDb = this.repository.BuscaAvaliacoes();
-            DateTime dataAvaliacaoDate = Convert.ToDateTime(avaliacao.DataAvaliacao);
-            int mes = dataAvaliacaoDate.Month;
-            int ano = dataAvaliacaoDate.Year;
-            foreach (var avaliacaoAtual in await avaliacaoDb)
+            if (await IsClientEvaluationInCurrentMonth(avaliacao))
             {
-                var dataDB = Convert.ToDateTime(avaliacaoAtual.DataAvaliacao);
-                int mesDB = dataDB.Month;
-                int anoDb = dataDB.Year;
-
-                if (mes == mesDB && ano == anoDb && avaliacao.Client == avaliacaoAtual.Client)
-                {
-                    return Ok("Cliente já fez uma avaliação esse mês!");
-                }
+                return Ok("Cliente já fez uma avaliação esse mês!");
             }
 
-            this.repository.AddAvaliacao(avaliacao);
-            return await this.repository.SaveChangeAsync() ? Ok("Salvo") : BadRequest("Erro");
+            _repository.AddAvaliacao(avaliacao);
+            return await SaveChangesAsync("Salvo");
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(int id, Avaliacao avaliacao)
+        public async Task<IActionResult> UpdateAvaliacao(int id, Avaliacao avaliacao)
         {
-            var userdb = await this.repository.BuscaAvaliacao(id);
-            if (userdb == null) return NotFound("Usuario Não Encontrado");
+            var existingAvaliacao = await _repository.BuscaAvaliacao(id);
+            if (existingAvaliacao == null) return NotFound("Usuário Não Encontrado");
 
-
-            this.repository.EditAvaliacao(avaliacao);
-
-            return await this.repository.SaveChangeAsync() ? Ok("Salvo") : BadRequest("Erro");
-
+            _repository.EditAvaliacao(avaliacao);
+            return await SaveChangesAsync("Salvo");
         }
 
         [HttpDelete("{id}")]
-
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAvaliacao(int id)
         {
-            var userdb = await this.repository.BuscaAvaliacao(id);
-            if (userdb == null) return NotFound("Usuario Não Encontrado");
+            var existingAvaliacao = await _repository.BuscaAvaliacao(id);
+            if (existingAvaliacao == null) return NotFound("Usuário Não Encontrado");
 
-
-
-            this.repository.DeleteAvaliacao(userdb);
-
-            return await this.repository.SaveChangeAsync() ? Ok("Deletado") : BadRequest("Erro");
-
+            _repository.DeleteAvaliacao(existingAvaliacao);
+            return await SaveChangesAsync("Deletado");
         }
 
+        private async Task<bool> IsClientEvaluationInCurrentMonth(Avaliacao avaliacao)
+        {
+            var avaliacoesDb = await _repository.BuscaAvaliacoes();
+            DateTime dataAvaliacaoDate = Convert.ToDateTime(avaliacao.DataAvaliacao);
+            int mes = dataAvaliacaoDate.Month;
+            int ano = dataAvaliacaoDate.Year;
 
+            return avaliacoesDb.Any(avaliacaoAtual =>
+                Convert.ToDateTime(avaliacaoAtual.DataAvaliacao).Month == mes &&
+                Convert.ToDateTime(avaliacaoAtual.DataAvaliacao).Year == ano &&
+                avaliacao.Client == avaliacaoAtual.Client);
+        }
+
+        private async Task<IActionResult> SaveChangesAsync(string successMessage)
+        {
+            return await _repository.SaveChangeAsync() ? Ok(successMessage) : BadRequest("Erro");
+        }
     }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FavoriteAppsService } from './favorite-apps.service';
+import { App } from './app.model'; // Assuming an App model exists
 
 @Component({
   selector: 'app-favorite-apps',
@@ -8,7 +9,7 @@ import { FavoriteAppsService } from './favorite-apps.service';
   styleUrls: ['./favorite-apps.component.scss'],
 })
 export class FavoriteAppsComponent implements OnInit {
-  indexList: any[];
+  indexList: App[] = [];
 
   constructor(
     private router: Router,
@@ -16,39 +17,42 @@ export class FavoriteAppsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.listIndex();
+    this.loadFavoriteApps();
   }
 
-  public listIndex() {
-    this.favoriteAppsService.getApps().subscribe(
-      (response) => {
-        this.indexList = response;
+  private loadFavoriteApps(): void {
+    this.favoriteAppsService.getApps().subscribe({
+      next: (apps: App[]) => this.indexList = apps,
+      error: () => this.handleError('Houve algum erro ao carregar a lista.')
+    });
+  }
+
+  public redirectTo(uri: string): void {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([uri]);
+    });
+  }
+
+  public addHit(app: App): void {
+    this.favoriteAppsService.addHit(app).subscribe({
+      next: () => {
+        this.loadFavoriteApps();
+        this.handleAppRedirect(app);
       },
-      (error) => {
-        alert('Houve algum erro ao carregar a lista.');
-      }
-    );
+      error: () => this.handleError('Houve algum erro ao carregar a lista.')
+    });
   }
 
-  public redirectTo(uri: string) {
-    this.router
-      .navigateByUrl('/', { skipLocationChange: true })
-      .then(() => this.router.navigate([uri]));
+  private handleAppRedirect(app: App): void {
+    const url = app.url.includes('#') ? app.url.replace('#', '') : app.url;
+    if (app.url.includes('#')) {
+      this.redirectTo(url);
+    } else {
+      window.open(url);
+    }
   }
 
-  addHit(index) {
-    this.favoriteAppsService.addHit(index).subscribe(
-      (response) => {
-        this.listIndex();
-        if (index.url.includes('#')) {
-          this.redirectTo(index.url.replace('#', ''));
-        } else {
-          window.open(index.url);
-        }
-      },
-      (error) => {
-        alert('Houve algum erro ao carregar a lista.');
-      }
-    );
+  private handleError(message: string): void {
+    alert(message);
   }
 }

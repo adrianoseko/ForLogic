@@ -1,15 +1,16 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using avaliacao.Model;
 
 namespace avaliacao.Repository
 {
     public interface IAvaliacaoRepository
     {
-        Task<IEnumerable<Avaliacao>> BuscaAvaliacoes();
-        Task<Avaliacao> BuscaAvaliacao(int id);
-        void AddAvaliacao(Avaliacao avaliacao);
-        void EditAvaliacao(Avaliacao avaliacao);
-        void DeleteAvaliacao(Avaliacao avaliacao);
-
-        public Task<bool> SaveChangeAsync();
+        Task<IEnumerable<Avaliacao>> GetAvaliacoesAsync();
+        Task<Avaliacao> GetAvaliacaoByIdAsync(int id);
+        Task AddAvaliacaoAsync(Avaliacao avaliacao);
+        Task UpdateAvaliacaoAsync(Avaliacao avaliacao);
+        Task DeleteAvaliacaoAsync(int id);
+        Task<bool> SaveChangesAsync();
     }
 }

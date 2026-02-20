@@ -1,11 +1,17 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element, ElementFinder } from 'protractor';
 
 export class AppPage {
-  navigateTo(): Promise<unknown> {
-    return browser.get(browser.baseUrl) as Promise<unknown>;
+  private readonly contentElement: ElementFinder;
+
+  constructor() {
+    this.contentElement = element(by.css('app-root .content span'));
   }
 
-  getTitleText(): Promise<string> {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+  async navigateTo(): Promise<void> {
+    await browser.get(browser.baseUrl);
+  }
+
+  async getTitleText(): Promise<string> {
+    return await this.contentElement.getText();
   }
 }

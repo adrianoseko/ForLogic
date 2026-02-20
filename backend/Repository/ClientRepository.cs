@@ -1,53 +1,48 @@
 using Microsoft.EntityFrameworkCore;
 using client.Data;
 using client.Model;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace client.Repository
 {
     public class ClientRepository : IClientRepository
     {
-        private readonly ClientContext context;
+        private readonly ClientContext _context;
 
         public ClientRepository(ClientContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
-        public IEnumerable<object> Client { get; internal set; }
-
-        public void AddClient(Client client)
+        public async Task AddClientAsync(Client client)
         {
-            this.context.Add(client);
+            await _context.AddAsync(client);
         }
 
-
-
-        public async Task<Client> BuscaClient(int cnpj)
+        public async Task<Client?> GetClientByCnpjAsync(int cnpj)
         {
-            return await this.context.Client.FirstOrDefaultAsync(x => x.Cnpj == cnpj);
+            return await _context.Client.FirstOrDefaultAsync(x => x.Cnpj == cnpj);
         }
 
-        public async Task<IEnumerable<Client>> BuscaClients()
+        public async Task<IEnumerable<Client>> GetAllClientsAsync()
         {
-            return await this.context.Client.ToListAsync();
+            return await _context.Client.ToListAsync();
         }
-
 
         public void DeleteClient(Client client)
         {
-            this.context.Remove(client);
+            _context.Remove(client);
         }
 
-
-        public void EditClient(Client client)
+        public void UpdateClient(Client client)
         {
-            this.context.Update(client);
+            _context.Update(client);
         }
 
-        public async Task<bool> SaveChangeAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            return await this.context.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync() > 0;
         }
-
     }
 }

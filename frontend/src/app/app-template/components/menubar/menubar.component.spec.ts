@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MenubarComponent } from './menubar.component';
 
 describe('MenubarComponent', () => {
@@ -8,9 +7,8 @@ describe('MenubarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MenubarComponent ]
-    })
-    .compileComponents();
+      declarations: [MenubarComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('MenubarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the Menubar component', () => {
     expect(component).toBeTruthy();
   });
 });

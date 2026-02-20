@@ -1,12 +1,14 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace backend.Migrations.Avaliacao
 {
-    /// <inheritdoc />
-    public partial class atualiza : Migration
+    /// <summary>
+    /// Migration to create the Avaliacao table.
+    /// </summary>
+    public partial class CreateAvaliacaoTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +20,7 @@ namespace backend.Migrations.Avaliacao
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DataAvaliacao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Client = table.Column<int>(type: "int", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
                     Nota = table.Column<int>(type: "int", nullable: false),
                     Motivo = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -31,8 +33,7 @@ namespace backend.Migrations.Avaliacao
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Avaliacao");
+            migrationBuilder.DropTable(name: "Avaliacao");
         }
     }
 }

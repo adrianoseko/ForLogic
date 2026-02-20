@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { NpsService } from './nps.service';
 
 describe('NpsService', () => {
