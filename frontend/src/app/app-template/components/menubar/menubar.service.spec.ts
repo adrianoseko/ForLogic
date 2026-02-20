@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { MenubarService } from './menubar.service';
 
 describe('MenubarService', () => {
