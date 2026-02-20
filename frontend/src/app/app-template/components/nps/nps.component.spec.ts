@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NpsComponent } from './nps.component';
 
 describe('NpsComponent', () => {
@@ -8,9 +7,8 @@ describe('NpsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NpsComponent ]
-    })
-    .compileComponents();
+      declarations: [NpsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('NpsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the NpsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
