@@ -1,46 +1,48 @@
 using Microsoft.EntityFrameworkCore;
 using user.Data;
 using users.Model;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace user.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly UserContext context;
+        private readonly UserContext _context;
 
         public UserRepository(UserContext context)
         {
-            this.context = context;
-        }
-        public void AddUser(Users user)
-        {
-            this.context.Add(user);
+            _context = context;
         }
 
-        public async Task<Users> BuscaUser(string login, string senha)
+        public async Task AddUserAsync(Users user)
         {
-            return await this.context.Users.FirstOrDefaultAsync(x => x.Login == login && x.Senha == senha);
+            await _context.Users.AddAsync(user);
         }
 
-        public async Task<IEnumerable<Users>> BuscaUsers()
+        public async Task<Users?> GetUserAsync(string login, string password)
         {
-            return await this.context.Users.ToListAsync();
+            return await _context.Users.FirstOrDefaultAsync(x => x.Login == login && x.Senha == password);
+        }
+
+        public async Task<IEnumerable<Users>> GetAllUsersAsync()
+        {
+            return await _context.Users.ToListAsync();
         }
 
         public void DeleteUser(Users user)
         {
-            this.context.Remove(user);
+            _context.Users.Remove(user);
         }
 
-        public void EditUser(Users user)
+        public void UpdateUser(Users user)
         {
-            this.context.Update(user);
+            _context.Users.Update(user);
         }
 
-        public async Task<bool> SaveChangeAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            return await this.context.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync() > 0;
         }
-
     }
 }
