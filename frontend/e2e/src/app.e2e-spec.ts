@@ -1,23 +1,26 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
-  let page: AppPage;
+describe('Workspace Project Application', () => {
+  let appPage: AppPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    appPage = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('angularproj app is running!');
+  it('should display the welcome message', async () => {
+    await appPage.navigateTo();
+    const titleText = await appPage.getTitleText();
+    expect(titleText).toEqual('angularproj app is running!');
   });
 
   afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+    await verifyNoBrowserErrors();
   });
+
+  async function verifyNoBrowserErrors(): Promise<void> {
+    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
+    const severeErrors = logs.filter(log => log.level === logging.Level.SEVERE);
+    expect(severeErrors.length).toBe(0);
+  }
 });
