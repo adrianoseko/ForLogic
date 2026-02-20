@@ -1,25 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment as env } from '../../../../environments/environment';
-import { Login } from './login';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  private readonly PATH: string = '';
+  private readonly apiUrl: string = `${environment.baseApiUrl}/api/Users`;
 
   constructor(private http: HttpClient) { }
 
-  logar(username: string, password: string): Observable<any> {
-    const header = new HttpHeaders().set(
-      'Content-Type',
-      'application/json; charset=utf-8'
-    );
-    console.log(env.baseApiUrl);
-    const loginobj = { username: username, password: password };
-    return this.http.get<any>('https://localhost:7136/api/Users/' + username + '/' + password, { headers: header });
+  logIn(username: string, password: string): Observable<any> {
+    const headers = this.createHeaders();
+    const loginPayload = this.createLoginPayload(username, password);
+    return this.http.get<any>(`${this.apiUrl}/${username}/${password}`, { headers });
+  }
+
+  private createHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+    });
+  }
+
+  private createLoginPayload(username: string, password: string): { username: string; password: string } {
+    return { username, password };
   }
 }
