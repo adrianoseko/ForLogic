@@ -4,12 +4,12 @@ namespace client.Repository
 {
     public interface IClientRepository
     {
-        Task<IEnumerable<Client>> BuscaClients();
-        Task<Client> BuscaClient(int cnpj);
-        void AddClient(Client client);
-        void EditClient(Client client);
-        void DeleteClient(Client client);
+        Task<IEnumerable<Client>> GetClientsAsync();
+        Task<Client?> GetClientByCnpjAsync(int cnpj);
+        Task AddClientAsync(Client client);
+        Task UpdateClientAsync(Client client);
+        Task DeleteClientAsync(Client client);
 
-        public Task<bool> SaveChangeAsync();
+        Task<bool> SaveChangesAsync();
     }
 }
