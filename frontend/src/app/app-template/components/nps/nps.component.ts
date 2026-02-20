@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NpsService } from './nps.service'
+import { NpsService } from './nps.service';
+
+interface Avaliacao {
+  nota: number;
+  dataAvaliacao: string;
+}
 
 @Component({
   selector: 'app-nps',
@@ -7,84 +12,86 @@ import { NpsService } from './nps.service'
   styleUrls: ['./nps.component.scss']
 })
 export class NpsComponent implements OnInit {
-  avaliacoes: any;
-  promotor: any;
-  neutro: any;
-  detrator: any
-  color: any;
-  nps: any;
-  total: any;
-  result: any;
-  dataInicial: any;
-  dataFinal: any;
-  dataFiltro: any[] = [];
+  private avaliacoes: Avaliacao[] = [];
+  private promotorCount: number = 0;
+  private neutroCount: number = 0;
+  private detratorCount: number = 0;
+  private npsScore: number = 0;
+  private result: string = '';
+  private color: string = '';
+  public dataInicial: Date | null = null;
+  public dataFinal: Date | null = null;
+  public filteredData: Avaliacao[] = [];
+
   constructor(private npsService: NpsService) { }
 
   ngOnInit(): void {
-
-    this.getAvaliacao()
+    this.loadAvaliacoes();
   }
 
-  getAvaliacao() {
+  private loadAvaliacoes(): void {
     this.npsService.getAvaliacao().subscribe(
-      data => { console.log(data), this.avaliacoes = data; this.npsCalc(this.avaliacoes) }
-    )
+      data => {
+        this.avaliacoes = data;
+        this.calculateNps(this.avaliacoes);
+      },
+      error => {
+        console.error('Error fetching evaluations:', error);
+      }
+    );
   }
 
-  npsCalc(avaliacoes) {
-    this.promotor = 0
-    this.neutro = 0
-    this.detrator = 0
-    this.nps = 0
-    this.result = 0
-    this.total = avaliacoes.length
-    for (let n in avaliacoes) {
-      var nota = avaliacoes[n].nota;
-      if (nota >= 9) {
-        this.promotor += 1
-      } else if (nota >= 7 && nota <= 8) {
-        this.neutro += 1
-      } else {
-        this.detrator += 1
-      }
+  private calculateNps(avaliacoes: Avaliacao[]): void {
+    this.resetCounts();
+    this.total = avaliacoes.length;
 
+    for (const avaliacao of avaliacoes) {
+      this.categorizeAvaliacao(avaliacao);
+    }
 
-    } this.nps = (this.promotor - this.detrator) / avaliacoes.length * 100
-    if (this.nps >= 80) {
-      this.color = 'green'
-    } else if (this.nps << 80 && this.nps >= 60) {
-      this.color = 'yellow';
+    this.npsScore = this.calculateNpsScore();
+    this.color = this.determineColor(this.npsScore);
+    this.result = this.npsScore.toFixed(2);
+    console.log(this.result);
+  }
+
+  private resetCounts(): void {
+    this.promotorCount = 0;
+    this.neutroCount = 0;
+    this.detratorCount = 0;
+  }
+
+  private categorizeAvaliacao(avaliacao: Avaliacao): void {
+    if (avaliacao.nota >= 9) {
+      this.promotorCount++;
+    } else if (avaliacao.nota >= 7) {
+      this.neutroCount++;
     } else {
-      this.color = 'red';
+      this.detratorCount++;
     }
-    this.result = this.nps.toFixed(2); console.log(this.result)
   }
 
-
-  filtro() {
-    this.dataFiltro = []; // Clear the previous filter results
-    const startOfDay = new Date(this.dataInicial);
-    startOfDay.setHours(0, 0, 0, 0); // Set time to start of the day
-    const endOfDay = new Date(this.dataFinal);
-    endOfDay.setHours(23, 59, 59, 999); // Set time to end of the day
-
-    for (let n in this.avaliacoes) {
-      const avaliacaoDate = new Date(this.avaliacoes[n].dataAvaliacao); // Assuming there's a 'data' property in your evaluation object
-      console.log(avaliacaoDate)
-      if (
-        avaliacaoDate >= startOfDay &&
-        avaliacaoDate <= endOfDay
-      ) {
-        console.log('aqui');
-        this.dataFiltro.push(this.avaliacoes[n]);
-      } else {
-        console.log('ERRO');
-      }
-    }
-    console.log(this.dataFiltro);
-    this.npsCalc(this.dataFiltro);
+  private calculateNpsScore(): number {
+    return ((this.promotorCount - this.detratorCount) / this.total) * 100;
   }
 
+  private determineColor(nps: number): string {
+    if (nps >= 80) return 'green';
+    if (nps >= 60) return 'yellow';
+    return 'red';
+  }
+
+  public filterAvaliacoes(): void {
+    this.filteredData = this.avaliacoes.filter(avaliacao => this.isWithinDateRange(avaliacao));
+    console.log(this.filteredData);
+    this.calculateNps(this.filteredData);
+  }
+
+  private isWithinDateRange(avaliacao: Avaliacao): boolean {
+    const avaliacaoDate = new Date(avaliacao.dataAvaliacao);
+    const startOfDay = this.dataInicial ? new Date(this.dataInicial.setHours(0, 0, 0, 0)) : new Date(0);
+    const endOfDay = this.dataFinal ? new Date(this.dataFinal.setHours(23, 59, 59, 999)) : new Date();
+
+    return avaliacaoDate >= startOfDay && avaliacaoDate <= endOfDay;
+  }
 }
-
-
