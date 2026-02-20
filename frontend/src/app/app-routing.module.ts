@@ -2,28 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full',
-  },
-  {
-    path: 'login',
-    redirectTo: '/login',
-    pathMatch: 'full',
-  },
-  {
-    path: 'home',
-    redirectTo: '/home',
-    pathMatch: 'full',
-  },
-  {
-    path: 'menu',
-    redirectTo: '/menu',
-    pathMatch: 'full',
-  },
-
+const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'home', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'menu', redirectTo: '/menu', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -36,4 +19,4 @@ export const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
