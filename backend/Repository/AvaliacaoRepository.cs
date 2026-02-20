@@ -1,44 +1,48 @@
 using avaliacao.Data;
 using avaliacao.Model;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace avaliacao.Repository
 {
     public class AvaliacaoRepository : IAvaliacaoRepository
     {
-        private readonly AvaliacaoContext context;
+        private readonly AvaliacaoContext _context;
+
         public AvaliacaoRepository(AvaliacaoContext context)
         {
-            this.context = context; // Initialize the context in the constructor
-        }
-        public void AddAvaliacao(Avaliacao avaliacao)
-        {
-            this.context.Add(avaliacao);
+            _context = context; // Initialize the context in the constructor
         }
 
-        public async Task<IEnumerable<Avaliacao>> BuscaAvaliacoes()
+        public async Task AddAvaliacaoAsync(Avaliacao avaliacao)
         {
-            return await this.context.Avaliacao.ToListAsync();
-        }
-        public async Task<Avaliacao> BuscaAvaliacao(int id)
-        {
-            return await this.context.Avaliacao.FirstOrDefaultAsync(x => x.Id == id);
-        }
-        public void DeleteAvaliacao(Avaliacao avaliacao)
-        {
-            throw new NotImplementedException();
+            await _context.AddAsync(avaliacao);
         }
 
-        public void EditAvaliacao(Avaliacao avaliacao)
+        public async Task<IEnumerable<Avaliacao>> GetAvaliacoesAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Avaliacao.ToListAsync();
         }
 
-        public async Task<bool> SaveChangeAsync()
+        public async Task<Avaliacao?> GetAvaliacaoByIdAsync(int id)
         {
-            return await this.context.SaveChangesAsync() > 0;
+            return await _context.Avaliacao.FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task DeleteAvaliacaoAsync(Avaliacao avaliacao)
+        {
+            _context.Remove(avaliacao);
+        }
 
+        public async Task EditAvaliacaoAsync(Avaliacao avaliacao)
+        {
+            _context.Update(avaliacao);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }
