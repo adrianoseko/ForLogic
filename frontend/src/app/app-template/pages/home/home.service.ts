@@ -5,5 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class HomeService {
 
-  constructor() { }
+  constructor() {}
+
+  // Future methods related to home functionality can be added here
 }
