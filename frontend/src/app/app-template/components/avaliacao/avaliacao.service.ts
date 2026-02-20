@@ -1,41 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment as env } from '../../../../environments/environment';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AvaliacaoService {
-  private readonly PATH: string = '';
+  private readonly baseApiUrl: string = environment.baseApiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
+
+  private createHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+    });
+  }
 
   getAvaliacao(): Observable<any> {
-    const header = new HttpHeaders().set(
-      'Content-Type',
-      'application/json; charset=utf-8'
-    );
-    console.log(env.baseApiUrl);
-    return this.http.get<any>('https://localhost:7136/api/Avaliacao')
+    return this.http.get<any>(`${this.baseApiUrl}/Avaliacao`, { headers: this.createHeaders() });
   }
+
   getClientes(): Observable<any> {
-    const header = new HttpHeaders().set(
-      'Content-Type',
-      'application/json; charset=utf-8'
-    );
-    console.log(env.baseApiUrl);
-    return this.http.get<any>('https://localhost:7136/api/Client')
+    return this.http.get<any>(`${this.baseApiUrl}/Client`, { headers: this.createHeaders() });
   }
 
-  postAvaliacao(form) {
-    const header = new HttpHeaders().set(
-      'Content-Type',
-      'application/json; charset=utf-8'
-    );
-    console.log(env.baseApiUrl);
-    return this.http.post('https://localhost:7136/api/Avaliacao', form)
+  postAvaliacao(form: any): Observable<any> {
+    return this.http.post<any>(`${this.baseApiUrl}/Avaliacao`, form, { headers: this.createHeaders() });
   }
-
 }
