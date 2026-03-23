@@ -1,14 +1,30 @@
-<p-menubar styleClass="menubar-layout" [model]="items">
+<p-menubar class="menubar-layout" [model]="items" role="navigation" aria-label="Main menu">
   <ng-template pTemplate="start">
-    <div style="display: flex; float: left">
-      <app-side-menu></app-side-menu>
+    <div class="menubar-start">
+      <!-- Side menu component: kept as-is to preserve functionality.
+           Add role-based inputs on the component (e.g. [allowedRoles]) and/or use structural
+           directives once AuthService is available to control visibility by role. -->
+      <app-side-menu class="side-menu" data-requires-auth="true"></app-side-menu>
     </div>
   </ng-template>
   <ng-template pTemplate="end">
-    <p class="mobile-hide" style="float: left; margin: 5px 50px 0 0; padding: 0">
+    <p class="mobile-hide menubar-welcome" aria-hidden="false" title="Bem-vindo">
       Bem-vindo
     </p>
     <button #btn type="button" class="p-menubar btn-side-menu" pButton icon="pi pi-power-off"
-      (click)="sairIAS()"></button>
+      (click)="sairIAS()" aria-label="Logout" title="Sair"></button>
   </ng-template>
 </p-menubar>
+
+<!--
+  Developer notes (non-functional comments kept here to guide secure integration):
+  - Implement authentication (JWT or secure cookie with HttpOnly + CSRF protection) in the
+    application services/controllers. Keep controller endpoints protected with authorization
+    attributes (role-based policies) on the backend.
+  - For role-based UI, pass the authenticated user's roles to components (e.g. <app-side-menu [roles]="userRoles">)
+    or use structural directives driven by an AuthService.
+  - Restrict CORS to a whitelist of known origins in production. Maintain separate, secure
+    configurations for development and production; avoid AllowAll in production.
+  - This template preserves the original behavior (menu model and sairIAS() logout click).
+  - Accessibility: added role/aria attributes and titles for better screen reader support.
+-->
