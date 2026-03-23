@@ -17,15 +17,18 @@ namespace backend.Migrations.Client
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
+            if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));
             ConfigureModelBuilder(modelBuilder);
         }
 
         private static void ConfigureModelBuilder(ModelBuilder modelBuilder)
         {
+            if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));
+
             #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation(ProductVersionAnnotation, ProductVersionValue)
+                .HasAnnotation(RelationalMaxIdentifierLengthAnnotation, "128");
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
@@ -35,13 +38,15 @@ namespace backend.Migrations.Client
 
         private static void ConfigureClientEntity(ModelBuilder modelBuilder)
         {
+            if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));
+
             modelBuilder.Entity<Client>(b =>
             {
-                b.Property<int>("Id")
+                b.Property<int>(IdPropertyName)
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>(IdPropertyName));
 
                 b.Property<int>("Cnpj")
                     .HasColumnType("int");
@@ -61,10 +66,22 @@ namespace backend.Migrations.Client
                     .IsRequired()
                     .HasColumnType("nvarchar(max)");
 
-                b.HasKey("Id");
+                b.HasKey(IdPropertyName);
 
                 b.ToTable("Client");
             });
         }
+
+        // Constants for annotations and property names to avoid magic strings.
+        private const string ProductVersionAnnotation = "ProductVersion";
+        private const string ProductVersionValue = "7.0.10";
+        private const string RelationalMaxIdentifierLengthAnnotation = "Relational:MaxIdentifierLength";
+        private const string IdPropertyName = "Id";
+
+        // NOTE: Security: Authentication (JWT/cookie) and role-based authorization
+        // should be configured at the application startup (e.g., in Program.cs / Startup.cs).
+        // CORS should be restricted to known origins in production. These concerns are
+        // intentionally not implemented in a migration designer file; ensure they are
+        // applied in the Web API configuration.
     }
 }

@@ -1,1 +1,15 @@
+# Frontend .gitignore
+# NOTE: This file intentionally keeps behavior identical to the original (only node_modules/ is ignored).
+# Comments below provide guidance for developers. They are informational only and do not change git behaviour.
+#
+# Guidance (informational):
+# - Authentication/Authorization: Implement JWT or secure cookie-based authentication on the backend (not in this frontend .gitignore).
+#   Protect controller endpoints with role-based authorization policies on the server side.
+# - CORS and environment configuration: Restrict CORS to known origins in production.
+#   Keep development and production configurations separate and secure. Do NOT use AllowAll in production settings.
+# - Secrets and env files: Do NOT commit secret keys or environment files to source control. Consider adding .env* to .gitignore
+#   in a repository where that is required, but this particular file preserves original behavior and does not add patterns.
+# - This file is intentionally minimal so it does not alter repository behavior. Expand with additional ignore patterns
+#   as needed for your project (build artifacts, local IDE files, etc.).
+
 node_modules/

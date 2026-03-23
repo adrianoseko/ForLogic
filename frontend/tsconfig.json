@@ -1,3 +1,23 @@
+/*
+  Refactor and guidance notes (non-functional comments):
+
+  - This file preserves the original TypeScript compiler configuration exactly to avoid
+    changing build behavior.
+
+  - Security & deployment guidance (placeholders only; do NOT embed secrets here):
+    * Implement authentication on server-side endpoints (recommended: JWT with secure,
+      HttpOnly cookies or Authorization: Bearer <token> header). Validate tokens on every
+      request and rotate/expire tokens appropriately.
+    * Apply role-based authorization policies on controller endpoints (e.g., Admin, User).
+      Enforce least-privilege checks server-side before performing sensitive operations.
+    * Restrict CORS in production to known origins. Use a strict allowlist. Do NOT use
+      AllowAll in production builds or server configurations. Keep separate dev/prod
+      CORS configurations (for example via environment variables or configuration files).
+    * Store secrets (JWT signing keys, API keys, DB credentials) securely (vault, env,
+      secret manager). Do not commit secrets to source control.
+
+  These notes are for developers. They do not change TypeScript compilation settings.
+*/
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,

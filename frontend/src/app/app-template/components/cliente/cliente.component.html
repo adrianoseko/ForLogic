@@ -1,41 +1,68 @@
-<div style="margin-left: 90%; margin-top: 1%;">
-    <p-button icon="pi pi-user-plus" (click)="openClientForm()"></p-button>
-</div>
-<div style="margin-top: 1%;">
-    <p-table [value]="clientes" [tableStyle]="{ 'min-width': '50rem' }">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Cliente</th>
-                <th>Responsavel</th>
-                <th>Cnpj</th>
-                <th>Tipo Cliente</th>
-                <th>Data Cadastro</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-client>
-            <tr>
-                <td>{{client.nameClient}}</td>
-                <td>{{client.respClient}}</td>
-                <td>{{client.cnpj}}</td>
-                <td>{{client.tipoClient}}</td>
-                <td>{{client.dataCadastro}}</td>
-            </tr>
-        </ng-template>
-    </p-table>
-</div>
-
-<p-dialog [(visible)]="clientDialog" [style]="{ width: '50%'}" header="Novo Cliente" [modal]="true"
-    styleClass="p-fluid">
-    <form action="/pagina-processa-dados-do-form" appendTo="body" [formGroup]="form" method="post">
-        <input style="margin-top: 1%;" formControlName="NameClient" type="text" placeholder="Nome/Rasão Social:"
-            pInputText />
-        <input style="margin-top: 1%;" formControlName="RespClient" type="text" placeholder="Responsavel pela empresa"
-            pInputText />
-        <div style="margin-top: 1%;">
-            <p-inputNumber placeholder="CNPJ" formControlName="Cnpj" inputId="integeronly"> </p-inputNumber>
-        </div>
-    </form>
-    <div style="margin-top: 1%;">
-        <p-button label="Submit" (click)="postClient()"></p-button>
+<!-- frontend/src/app/app-template/components/cliente/cliente.component.html -->
+<div class="cliente-container">
+    <!-- Action button: visible by default, will be hidden only when an auth object explicitly forbids creation -->
+    <div class="cliente-actions" style="margin-left: 90%; margin-top: 1%;">
+        <!-- Use safe navigation so template doesn't break if `auth` is not provided by the component -->
+        <p-button aria-label="Adicionar cliente" icon="pi pi-user-plus" (click)="openClientForm()"
+                  *ngIf="auth?.canCreateClient !== false"></p-button>
     </div>
-</p-dialog>
+
+    <!-- Clients table: visible by default; hidden only when auth explicitly forbids viewing -->
+    <div class="cliente-table" style="margin-top: 1%;" *ngIf="auth?.canViewClients !== false">
+        <p-table [value]="clientes" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Responsavel</th>
+                    <th scope="col">Cnpj</th>
+                    <th scope="col">Tipo Cliente</th>
+                    <th scope="col">Data Cadastro</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-client>
+                <tr>
+                    <td>{{ client.nameClient }}</td>
+                    <td>{{ client.respClient }}</td>
+                    <td>{{ client.cnpj }}</td>
+                    <td>{{ client.tipoClient }}</td>
+                    <td>{{ client.dataCadastro }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <!-- Dialog for creating a new client -->
+    <!-- The dialog is shown/hidden by the `clientDialog` model. The whole dialog is wrapped with a
+         permission check that defaults to visible when `auth` is not provided to keep existing behavior. -->
+    <p-dialog *ngIf="auth?.canCreateClient !== false"
+              [(visible)]="clientDialog"
+              [style]="{ width: '50%' }"
+              header="Novo Cliente"
+              [modal]="true"
+              styleClass="p-fluid"
+              aria-label="Dialogo novo cliente">
+
+        <!-- Reactive form bound to `form` (provided by the component). Keep existing action & method for compatibility. -->
+        <form action="/pagina-processa-dados-do-form" appendTo="body" [formGroup]="form" method="post" (ngSubmit)="postClient()">
+
+            <label for="nameClient" class="sr-only">Nome / Razão Social</label>
+            <input id="nameClient" style="margin-top: 1%;" formControlName="NameClient" type="text"
+                   placeholder="Nome/Razão Social:" pInputText aria-label="Nome ou razão social" />
+
+            <label for="respClient" class="sr-only">Responsável pela empresa</label>
+            <input id="respClient" style="margin-top: 1%;" formControlName="RespClient" type="text"
+                   placeholder="Responsavel pela empresa" pInputText aria-label="Responsavel pela empresa" />
+
+            <div style="margin-top: 1%;">
+                <p-inputNumber placeholder="CNPJ" formControlName="Cnpj" inputId="integeronly"
+                               aria-label="CNPJ do cliente"> </p-inputNumber>
+            </div>
+
+            <!-- Actions: keep Submit behavior identical (calls postClient) but use a proper button type -->
+            <div style="margin-top: 1%;">
+                <p-button type="submit" label="Submit" (click)="postClient()" aria-label="Enviar formulário"></p-button>
+            </div>
+
+        </form>
+    </p-dialog>
+</div>

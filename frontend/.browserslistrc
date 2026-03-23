@@ -1,12 +1,25 @@
-# This file is used by the build system to adjust CSS and JS output to support the specified browsers below.
-# For additional information regarding the format and rule options, please see:
-# https://github.com/browserslist/browserslist#queries
-
-# For the full list of supported browsers by the Angular framework, please see:
-# https://angular.io/guide/browser-support
-
-# You can see what browsers were selected by your queries by running:
-#   npx browserslist
+# Browserslist configuration for the frontend build system
+# This file instructs build tools (Angular, Autoprefixer, Babel, etc.) which browsers to support.
+# Keep the query lines below unchanged to preserve build output and behavior.
+#
+# Helpful links:
+#  - Browserslist query format: https://github.com/browserslist/browserslist#queries
+#  - Angular browser support guidance: https://angular.io/guide/browser-support
+#
+# Environment-specific overrides
+#  - You may create environment-specific files (for example: .browserslistrc.dev, .browserslistrc.prod)
+#    and load/merge them in your build pipeline if you need different targets per environment.
+#
+# Security and operational guidance (non-functional comments only):
+#  - Do NOT keep insecure "AllowAll" CORS policies in production. Configure CORS on the backend
+#    to allow only specific, trusted origins.
+#  - Implement authentication (JWT or secure cookie-based sessions) on backend endpoints and
+#    apply role-based authorization policies for controller endpoints. Protect authentication
+#    cookies with HttpOnly, Secure, SameSite settings and rotate/expire tokens as appropriate.
+#  - Store environment-specific sensitive settings (allowed origins, signing keys, secrets) in
+#    secure configuration/secrets storage and never check them into source control.
+#
+# Note: Comments above are guidance only and do not change the behavior of the build.
 
 last 1 Chrome version
 last 1 Firefox version

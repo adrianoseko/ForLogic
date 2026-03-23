@@ -4,12 +4,20 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:dev": "ng serve --configuration=development",
+    "start:prod": "ng serve --configuration=production",
     "build": "ng build",
+    "build:prod": "ng build --configuration=production --aot",
     "test": "ng test",
     "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
     "e2e": "ng e2e"
   },
   "private": true,
+  "config": {
+    "allowedOrigins": "http://localhost:4200,https://your-production-domain.com",
+    "authStrategy": "jwt"
+  },
   "dependencies": {
     "@angular/animations": "~11.2.13",
     "@angular/cdk": "^11.2.13",
@@ -38,7 +46,9 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "xlsx": "^0.17.3",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "@auth0/angular-jwt": "^5.0.2",
+    "ngx-cookie-service": "^11.0.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1102.12",

@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
@@ -25,6 +25,21 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Production": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7136;http://localhost:5010",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "# NOTE": "The following environment variables are placeholders to support secure configuration for authentication and CORS in production. Leave empty here and provide secure values via secrets or CI/CD environment variables.",
+        "JWT__Issuer": "",
+        "JWT__Audience": "",
+        "JWT__Key": "",
+        "CORS__AllowedOrigins": ""
       }
     }
   }

@@ -1,8 +1,20 @@
+./* Refactored login.component.scss
+   - Consolidated duplicate selectors
+   - Introduced color variables for clarity
+   - Kept original behavior and ordering (including some invalid-but-intentional properties)
+*/
+
+$white: #fff;
+$black: #000;
+$gray: gray;
+$overlay: rgba(0, 0, 0, 0.3);
+
+/* Inputs: keep !important to preserve original specificity/behavior */
 .p-inputtext:enabled,
 .p-inputtext:enabled:focus,
 input {
-  background-color: #fff !important;
-  background: #fff !important;
+  background-color: $white !important;
+  background: $white !important;
 }
 
 .logo-login {
@@ -10,29 +22,31 @@ input {
 }
 
 .toast-style {
+  /* Note: 'position: center' is not a standard CSS value; kept to preserve original file behavior */
   position: center;
 }
 
 @media only screen and (max-width: 800px) {
   #login-area-content {
+    /* kept original visual rules */
     position: center;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    box-shadow: 12px -5px 5px -13px #000;
+    background: $overlay;
+    box-shadow: 12px -5px 5px -13px $black;
     z-index: 7;
   }
 
   .p-text-center {
-    color: white;
+    color: $white;
   }
 
   .link-login {
-    color: white;
+    color: $white;
   }
 
   .lock-mobile {
-    color: white;
+    color: $white;
   }
 
   #login-area {
@@ -44,18 +58,47 @@ input {
   margin-top: 30%;
   text-decoration: none;
   width: 100%;
-  color: black;
+  color: $black;
   font-size: 5rem;
   //text-align: center !important;
   font-family: "Russo One";
   text-transform: uppercase;
 }
 
-// spinner style
-
+/* Spinner styles */
+/* Preserve original ordering of animation declarations to avoid changing runtime behavior */
 :host ::ng-deep .custom-spinner .p-progress-spinner-circle {
   animation: none;
-  stroke: #000;
+  stroke: $black;
+  animation: custom-progress-spinner-color; /* kept as in original file (name differs from keyframes) */
+  width: 100% !important;
+  height: 70px !important;
+  margin-top: 60% !important;
+}
+
+/* Keep the general circle stroke rule (matches original file) */
+.p-progress-spinner-circle {
+  stroke: $black;
+}
+
+@keyframes p-progress-spinner-color {
+  100%,
+  0% {
+    stroke: $black !important;
+  }
+
+  40% {
+    stroke: $gray !important;
+  }
+
+  66% {
+    stroke: $black !important;
+  }
+
+  80%,
+  90% {
+    stroke: $gray !important;
+  }
 }
 
 .frames {
@@ -63,38 +106,6 @@ input {
   margin-right: auto;
   max-width: 600px;
   margin-top: 20px;
-}
-
-.p-progress-spinner-circle {
-  stroke: black;
-}
-
-:host ::ng-deep .custom-spinner .p-progress-spinner-circle {
-  animation: custom-progress-spinner-color;
-  width: 100% !important;
-  height: 70px !important;
-  margin-top: 60% !important;
-}
-
-@keyframes p-progress-spinner-color {
-
-  100%,
-  0% {
-    stroke: black !important;
-  }
-
-  40% {
-    stroke: gray !important;
-  }
-
-  66% {
-    stroke: black !important;
-  }
-
-  80%,
-  90% {
-    stroke: gray !important;
-  }
 }
 
 .spin-container {
