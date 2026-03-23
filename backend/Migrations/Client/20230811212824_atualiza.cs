@@ -6,17 +6,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace backend.Migrations.Client
 {
     /// <summary>
-    /// Migration to create the Client table in the database.
+    /// Migration that creates the "Clients" table in the database.
+    /// This class preserves behaviour of the original migration while improving readability and maintainability.
     /// </summary>
     public partial class CreateClientTable : Migration
     {
+        // Centralize table name to reduce repetition and risk of typos
+        private const string TableName = "Clients";
+
         /// <summary>
-        /// Applies the migration by creating the Client table.
+        /// Applies the migration by creating the Clients table.
         /// </summary>
+        /// <param name="migrationBuilder">The builder used to construct the operations to be applied to the database.</param>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            if (migrationBuilder == null) throw new ArgumentNullException(nameof(migrationBuilder));
+
             migrationBuilder.CreateTable(
-                name: "Clients",
+                name: TableName,
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -29,16 +36,19 @@ namespace backend.Migrations.Client
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.Id);
+                    table.PrimaryKey($"PK_{TableName}", x => x.Id);
                 });
         }
 
         /// <summary>
-        /// Reverts the migration by dropping the Client table.
+        /// Reverts the migration by dropping the Clients table.
         /// </summary>
+        /// <param name="migrationBuilder">The builder used to construct the operations to be applied to the database.</param>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(name: "Clients");
+            if (migrationBuilder == null) throw new ArgumentNullException(nameof(migrationBuilder));
+
+            migrationBuilder.DropTable(name: TableName);
         }
     }
 }
