@@ -1,25 +1,39 @@
-.posts-container {
+/*
+  Refactored SCSS for home.component
+  - Introduced variables for margins and widths for easier maintenance
+  - Extracted a flex placeholder to avoid repetition (DRY)
+  - Preserved original layout and spacing behavior
+*/
+
+// Spacing variables
+$base-margin-horizontal: 2%;
+$full-margin-horizontal: 5%;
+$posts-margin-top: 0.5em;
+$favorites-margin-top: 1em;
+$full-margin-top: 2%;
+
+// Utility placeholder for flex containers to keep styles DRY
+%flex-base {
   display: flex;
-  margin-top: 0.5em;
   width: 100%;
-  margin-left: 2%;
-  margin-right: 2%;
+}
+
+.posts-container {
+  @extend %flex-base;
+  /* top | right | bottom | left */
+  margin: $posts-margin-top $base-margin-horizontal 0 $base-margin-horizontal;
 }
 
 .favorites-container {
-  display: flex;
-  margin-top: 1em;
+  @extend %flex-base;
+  margin: $favorites-margin-top $base-margin-horizontal 0 $base-margin-horizontal;
   width: 25%;
-  margin-left: 2%;
-  margin-right: 2%;
 }
 
 .full-container {
   display: flex;
   max-width: 100%;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 2%;
+  margin: $full-margin-top $full-margin-horizontal 0 $full-margin-horizontal;
 }
 
 .search-container {
