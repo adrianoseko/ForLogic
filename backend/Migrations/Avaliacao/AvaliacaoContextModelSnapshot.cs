@@ -4,12 +4,27 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using avaliacao.Data;
 
 #nullable disable
 
 namespace backend.Migrations.Avaliacao
 {
+    /// <summary>
+    /// Model snapshot for AvaliacaoContext. This file is a refactored version of the EF Core
+    /// generated snapshot. Functionality is preserved. Configuration for authentication and CORS
+    /// should be implemented in the application's Startup/Program (see TODO below).
+    ///
+    /// TODO:
+    /// - Add authentication (JWT or cookie-based) and role-based authorization policies in the
+    ///   application's Startup/Program and apply [Authorize] to controller endpoints.
+    /// - Restrict CORS to known origins in production and separate dev/prod configuration. Do
+    ///   NOT use AllowAll in production.
+    ///
+    /// This snapshot must remain data-model-only; runtime authentication/CORS belongs in the
+    /// application configuration and controllers, not in EF migrations.
+    /// </summary>
     [DbContext(typeof(AvaliacaoContext))]
     partial class AvaliacaoContextModelSnapshot : ModelSnapshot
     {
@@ -33,31 +48,37 @@ namespace backend.Migrations.Avaliacao
 
         private static void ConfigureAvaliacaoEntity(ModelBuilder modelBuilder)
         {
+            const string TableName = "Avaliacao";
+
             modelBuilder.Entity<Avaliacao>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
-
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(entity.Property(e => e.Id));
-
-                entity.Property(e => e.Client)
-                    .HasColumnType("int");
-
-                entity.Property(e => e.DataAvaliacao)
-                    .HasColumnType("datetime2");
-
-                entity.Property(e => e.Motivo)
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
-
-                entity.Property(e => e.Nota)
-                    .HasColumnType("int");
+                ConfigureAvaliacaoProperties(entity);
 
                 entity.HasKey(e => e.Id);
-
-                entity.ToTable("Avaliacao");
+                entity.ToTable(TableName);
             });
+        }
+
+        private static void ConfigureAvaliacaoProperties(EntityTypeBuilder<Avaliacao> entity)
+        {
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnType("int");
+
+            SqlServerPropertyBuilderExtensions.UseIdentityColumn(entity.Property(e => e.Id));
+
+            entity.Property(e => e.Client)
+                .HasColumnType("int");
+
+            entity.Property(e => e.DataAvaliacao)
+                .HasColumnType("datetime2");
+
+            entity.Property(e => e.Motivo)
+                .IsRequired()
+                .HasColumnType("nvarchar(max)");
+
+            entity.Property(e => e.Nota)
+                .HasColumnType("int");
         }
     }
 }
