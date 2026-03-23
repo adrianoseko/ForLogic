@@ -6,29 +6,37 @@
   <title>FORLOGIC</title>
   <base href="/" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- PrimeIcons for the app UI -->
   <link rel="stylesheet" type="text/css" href="/node_modules/primeicons/primeicons.css" />
-  <style>
-    @import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic|Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
-    @import url(https://fonts.googleapis.com/css?family=Orbitron);
-    @import url(https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic);
-    @import url(https://fonts.googleapis.com/css?family=Raleway:200,300,400,500);
-    @import url(https://fonts.googleapis.com/css?family=Russo+One);
-    @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
+  <!-- Preconnect to font providers for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <style>
+    /* Consolidated Google Fonts import to reduce multiple requests and improve readability. */
+    @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic|Roboto:100,300,400,500,700,900|Orbitron:400|RobotoDraft:400,500,700|Raleway:200,300,400,500|Russo+One:400|Source+Sans+Pro:400');
+
+    /* Local digital font (kept as-is) */
     @font-face {
       font-family: 'DigitalDream';
       src: url("../fonts/DIGITALDREAM-webfont.eot");
-      src: url("../fonts/DIGITALDREAM-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/DIGITALDREAM-webfont.woff") format("woff"), url("../fonts/DIGITALDREAM-webfont.ttf") format("truetype"), url("../fonts/DIGITALDREAM-webfont.svg#digital_dreamregular") format("svg");
+      src: url("../fonts/DIGITALDREAM-webfont.eot?#iefix") format("embedded-opentype"),
+           url("../fonts/DIGITALDREAM-webfont.woff") format("woff"),
+           url("../fonts/DIGITALDREAM-webfont.ttf") format("truetype"),
+           url("../fonts/DIGITALDREAM-webfont.svg#digital_dreamregular") format("svg");
       font-weight: normal;
       font-style: normal;
     }
 
+    /* Base typography and background (preserve original look & feel) */
     body {
       font-family: 'Source Sans Pro', 'Noto Sans', 'Roboto', sans-serif;
       background-color: #FFFFFF;
       text-align: justify;
     }
 
+    /* Headings: consistent family and weight */
     .h1,
     .h2,
     .h3,
@@ -47,7 +55,142 @@
       color: inherit;
     }
   </style>
+
   <link rel="icon" type="image/x-icon" href="/assets/imgs/favicon.png" />
+
+  <!--
+    Application configuration and lightweight client-side authentication helper.
+
+    Notes (non-invasive / read-only by default):
+    - This script provides a standardized configuration object and an optional Auth helper
+      that applications can call if they choose to use client-side JWT helpers.
+    - It purposefully does not alter cookies/localStorage automatically so the current
+      application behavior remains unchanged.
+    - Server-side responsibility: issue HttpOnly, Secure cookies (recommended) or JWTs
+      via authorization endpoints and enforce role-based policies on the backend controllers.
+
+    Developer guidance (backend):
+    - Implement JWT or cookie-based authentication on the server. Use HttpOnly, Secure
+      cookies with SameSite=strict/lax when possible. If using JWTs in tokens, protect
+      refresh tokens and rotate tokens.
+    - Enforce RBAC (role-based access control) on controller endpoints (e.g. [Authorize(Roles = "Admin")]).
+    - Configure CORS using environment-specific configuration. Do not use AllowAll in production.
+      Restrict origins to a configured allowed list (for example https://your-prod-domain.com).
+  -->
+
+  <script>
+    (function (global) {
+      'use strict';
+
+      // Lightweight app configuration. The application and backend should override these
+      // values at build-time or run-time (e.g. server-side templating, env injection).
+      var APP_CONFIG = {
+        // Leave env detection to build/runtime. Default is 'development' for clarity.
+        env: 'development',
+        // Allowed origins: use a concrete list in production via build/release pipeline.
+        allowedOrigins: {
+          development: ['http://localhost:4200'],
+          production: ['https://your-production-domain.example']
+        },
+        // Auth-related defaults for client-side helpers. Server should set HttpOnly cookies
+        // where possible; client-side storage of sensitive tokens is discouraged.
+        auth: {
+          tokenStorage: 'cookie', // recommended default: cookie (server should set HttpOnly)
+          cookieName: 'FORLOGIC_AUTH'
+        }
+      };
+
+      // A minimal, non-invasive Auth helper. It does not auto-modify storage or cookies;
+      // it only exposes utilities that the SPA can use when needed.
+      function safeBase64Decode(str) {
+        try {
+          // atob expects proper padding; replace URL-safe characters
+          var s = str.replace(/-/g, '+').replace(/_/g, '/');
+          // Add padding if necessary
+          while (s.length % 4) s += '=';
+          return atob(s);
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function parseJwt(token) {
+        if (!token || typeof token !== 'string') return null;
+        var parts = token.split('.');
+        if (parts.length < 2) return null;
+        var payload = safeBase64Decode(parts[1]);
+        if (!payload) return null;
+        try {
+          return JSON.parse(payload);
+        } catch (e) {
+          return null;
+        }
+      }
+
+      // Cookie helpers (do not set HttpOnly via JS; server must set HttpOnly cookies)
+      function readCookie(name) {
+        if (!name) return null;
+        var match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : null;
+      }
+
+      function hasRole(token, role) {
+        var payload = parseJwt(token);
+        if (!payload) return false;
+        // Standard claim names vary: 'roles', 'role', 'realm_access', etc. Check common places.
+        if (payload.roles && Array.isArray(payload.roles)) return payload.roles.indexOf(role) !== -1;
+        if (payload.role && typeof payload.role === 'string') return payload.role === role;
+        if (payload.realm_access && payload.realm_access.roles && Array.isArray(payload.realm_access.roles)) {
+          return payload.realm_access.roles.indexOf(role) !== -1;
+        }
+        return false;
+      }
+
+      var Auth = {
+        config: APP_CONFIG,
+        // Attempts to retrieve token from cookie or localStorage. Does not persist changes.
+        getToken: function () {
+          // Prefer cookie (server-set HttpOnly preferred). If not present, fall back to localStorage.
+          var cookieToken = readCookie(APP_CONFIG.auth.cookieName);
+          if (cookieToken) return cookieToken;
+          try {
+            return window.localStorage ? window.localStorage.getItem(APP_CONFIG.auth.cookieName) : null;
+          } catch (e) {
+            return null;
+          }
+        },
+        // Parse token payload safely
+        parseToken: function (token) {
+          return parseJwt(token || this.getToken());
+        },
+        // Check for authentication presence (token existence only; server must validate token!)
+        isAuthenticated: function () {
+          return !!this.getToken();
+        },
+        // Check role presence in token payload (useful for client-side UI gating only)
+        hasRole: function (role) {
+          var token = this.getToken();
+          return !!token && hasRole(token, role);
+        },
+        // Utility to clear client-stored token (server should clear HttpOnly cookie)
+        clearClientToken: function () {
+          try {
+            if (window.localStorage) window.localStorage.removeItem(APP_CONFIG.auth.cookieName);
+            // Remove client-visible cookie (won't affect HttpOnly cookie set by server)
+            document.cookie = APP_CONFIG.auth.cookieName + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          } catch (e) {
+            // swallow silently to avoid breaking the app flow
+          }
+        }
+      };
+
+      // Expose configuration and helpers on the global namespace in a read-only manner.
+      Object.defineProperty(global, '__APP_CONFIG__', { value: APP_CONFIG, writable: false, configurable: false });
+      Object.defineProperty(global, 'FORLOGIC_Auth', { value: Auth, writable: false, configurable: false });
+
+    })(window);
+  </script>
+
 </head>
 
 <body>
