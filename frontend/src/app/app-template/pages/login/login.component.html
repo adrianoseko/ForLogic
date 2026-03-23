@@ -1,52 +1,114 @@
+<!--
+  Refactored login template
+  Notes for integrators:
+  - Implement authentication (JWT or secure http-only cookies) in the backend. Do not store tokens in localStorage.
+  - Protect API endpoints with role-based authorization on the server side. Example: [Authorize(Roles = "Admin")]
+  - Configure CORS in production to restrict to known origins (avoid AllowAll in production). Keep separate dev/prod config files.
+  - This template preserves existing behavior and bindings (loginForm formGroup, loginform model) intentionally.
+-->
+
 <div id="login-area-content">
-  <div class="spin-container" *ngIf="inProgress">
-    <p-progressSpinner [style]="{ width: '100%', height: '70px', marginTop: '60%' }"
-      styleClass="custom-spinner"></p-progressSpinner>
+  <!-- Spinner while request is in progress -->
+  <div class="spin-container" *ngIf="inProgress" aria-hidden="false">
+    <p-progressSpinner
+      [style]="{ width: '100%', height: '70px', marginTop: '60%' }"
+      styleClass="custom-spinner"
+      aria-label="Loading spinner">
+    </p-progressSpinner>
   </div>
-  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" *ngIf="!inProgress">
+
+  <!-- Login form: keep same bindings/controls to preserve behavior -->
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="loginForm"
+    *ngIf="!inProgress"
+    autocomplete="off"
+    novalidate
+    role="form"
+    data-test="login-form">
+
     <div>
+      <!-- Error notifications -->
       <p-toast key="error" class="toast-style"></p-toast>
-      <p-messages [(value)]="msgs"></p-messages>
-      <div class="p-text-center font-logo">ForLogic</div>
-      <br /><br />
+      <p-messages [(value)]="msgs" aria-live="polite"></p-messages>
+
+      <div class="p-text-center font-logo" aria-hidden="false">ForLogic</div>
+
+      <div class="spacer" style="height:1rem"></div>
+
+      <!-- Username input group -->
       <div class="p-inputgroup login-size">
-        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-        <input type="text" [(ngModel)]="loginform.username" formControlName="username" pInputText placeholder="Usuário"
-          class="p-inputtext-lg" />
+        <span class="p-inputgroup-addon" aria-hidden="true"><i class="pi pi-user"></i></span>
+        <!-- Note: two-way ngModel is kept to preserve component behavior -->
+        <input
+          id="username"
+          name="username"
+          type="text"
+          [(ngModel)]="loginform.username"
+          formControlName="username"
+          pInputText
+          placeholder="Usuário"
+          class="p-inputtext-lg"
+          aria-label="Usuário" />
       </div>
+
       <div class="ui-grid-col-4">
-        <div [hidden]="
-            loginForm.controls['username'].valid ||
-            !loginForm.controls['username'].dirty
-          " class="alert alert-danger">
+        <div
+          [hidden]="loginForm.controls['username'].valid || !loginForm.controls['username'].dirty"
+          class="alert alert-danger"
+          role="alert">
           Login is required
         </div>
       </div>
-      <br />
+
+      <div class="spacer" style="height:0.75rem"></div>
+
+      <!-- Password input group -->
       <div class="p-inputgroup login-size">
-        <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-        <p-password [feedback]="false" placeholder="Senha" class="p-inputtext-lg passdw"
-          [(ngModel)]="loginform.password" formControlName="password">
+        <span class="p-inputgroup-addon" aria-hidden="true"><i class="pi pi-lock"></i></span>
+        <p-password
+          id="password"
+          name="password"
+          [feedback]="false"
+          placeholder="Senha"
+          class="p-inputtext-lg passdw"
+          [(ngModel)]="loginform.password"
+          formControlName="password"
+          aria-label="Senha">
         </p-password>
       </div>
+
       <div class="ui-grid-col-4">
-        <div [hidden]="
-            loginForm.controls['password'].valid ||
-            !loginForm.controls['password'].dirty
-          " class="alert alert-danger">
+        <div
+          [hidden]="loginForm.controls['password'].valid || !loginForm.controls['password'].dirty"
+          class="alert alert-danger"
+          role="alert">
           Password is required
         </div>
       </div>
-      <button id="btn-login" pButton pRipple type="submit" label="Acessar" class="p-button-warning"
-        [disabled]="!loginForm.valid"></button>
+
+      <!-- Submit button -->
+      <button
+        id="btn-login"
+        pButton
+        pRipple
+        type="submit"
+        label="Acessar"
+        class="p-button-warning"
+        [disabled]="!loginForm.valid"
+        aria-disabled="{{!loginForm.valid}}">
+      </button>
+
+      <!-- Password recovery link (visual only; actual action handled in component) -->
       <div class="p-inputgroup login-size">
         <div id="recuperar-senha">
-          <i class="pi pi-lock lock-mobile"></i>
-          <a class="link-login">Esqueceu a senha?</a>
+          <i class="pi pi-lock lock-mobile" aria-hidden="true"></i>
+          <a class="link-login" role="link" tabindex="0">Esqueceu a senha?</a>
         </div>
       </div>
     </div>
   </form>
 </div>
-<div class="global-login-area"></div>
-<div id="login-area"></div>
+
+<div class="global-login-area" aria-hidden="true"></div>
+<div id="login-area" aria-hidden="true"></div>
