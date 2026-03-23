@@ -1,14 +1,44 @@
-<p-table [value]="indexList">
+<!--
+  Refactored favorite-apps.component.html
+  - Improved accessibility (aria-label, role, scope)
+  - Prevent default anchor navigation to avoid page jump
+  - Added defensive checks for empty lists
+  - Added lightweight data attributes to aid integration with authentication/authorization
+  Note: Authentication/authorization should be enforced on the backend (controllers/APIs).
+        The data attributes below are non-functional hooks for frontend/backend integration
+        (they do not change behavior of this template).
+-->
+
+<p-table *ngIf="indexList?.length > 0; else noFavorites" [value]="indexList" data-auth="jwt" attr.data-required-role="ROLE_USER">
   <ng-template pTemplate="header">
     <tr>
-      <th>Mais acessados</th>
+      <th scope="col">Mais acessados</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-index>
+
+  <ng-template pTemplate="body" let-app>
     <tr>
       <td>
-        <a href="#" (click)="addHit(index)">{{ index.name }}</a>
+        <!-- Prevent default navigation and call existing component method -->
+        <a href="#" role="button" aria-label="Abrir {{ app?.name }}" (click)="$event.preventDefault(); addHit(app)">
+          {{ app?.name }}
+        </a>
       </td>
     </tr>
   </ng-template>
 </p-table>
+
+<ng-template #noFavorites>
+  <p-table>
+    <ng-template pTemplate="header">
+      <tr>
+        <th scope="col">Mais acessados</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body">
+      <tr>
+        <td class="text-muted">Nenhum item encontrado</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-template>
