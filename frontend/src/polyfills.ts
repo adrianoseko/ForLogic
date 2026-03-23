@@ -1,17 +1,24 @@
 /**
- * This file includes polyfills needed by Angular and is loaded before the app.
- * You can add your own extra polyfills to this file.
+ * Polyfills for Angular applications.
  *
- * This file is divided into 2 sections:
- *   1. Browser polyfills. These are applied before loading ZoneJS and are sorted by browsers.
- *   2. Application imports. Files imported after ZoneJS that should be loaded before your main
- *      file.
+ * Purpose:
+ *  - Include browser polyfills required by Angular and loaded before the app.
+ *  - Split into 2 logical sections: browser polyfills and application imports.
  *
- * The current setup is for so-called "evergreen" browsers; the last versions of browsers that
- * automatically update themselves. This includes Safari >= 10, Chrome >= 55 (including Opera),
- * Edge >= 13 on the desktop, and iOS 10 and Chrome on mobile.
+ * Notes:
+ *  - This file targets evergreen browsers (recent versions that auto-update).
+ *  - Keep this file minimal: only import what you need.
+ *  - To change Zone.js patch behavior, create a separate zone-flags.ts and import it
+ *    above the Zone.js import (see the example below).
  *
- * Learn more in https://angular.io/guide/browser-support
+ * Security guidance (informational only - implement in app/back-end configuration):
+ *  - Authentication and authorization are not implemented in this file. Implement
+ *    JWT or HttpOnly cookie-based authentication on the server, with CSRF protection
+ *    if you use cookies. Enforce role-based authorization in both the back-end
+ *    (controller endpoints) and front-end route guards.
+ *  - Restrict CORS to known origins in production. Do not use AllowAll in production
+ *    settings. Keep dev and production CORS configuration separated and stored
+ *    securely (environment variables or secure configuration stores).
  */
 
 /***************************************************************************************************
@@ -19,37 +26,34 @@
  */
 
 /**
- * IE11 requires the following for NgClass support on SVG elements
+ * Example: IE11 support for NgClass on SVG elements.
+ * Uncomment and install if you need it:
+ *   npm install --save classlist.js
  */
-// import 'classlist.js';  // Run `npm install --save classlist.js`.
+// import 'classlist.js';
 
 /**
- * Web Animations `@angular/platform-browser/animations`
- * Only required if AnimationBuilder is used within the application and using IE/Edge or Safari.
- * Standard animation support in Angular DOES NOT require any polyfills (as of Angular 6.0).
+ * Example: Web Animations polyfill for AnimationBuilder on older browsers.
+ * Uncomment and install if you need it:
+ *   npm install --save web-animations-js
  */
-// import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+// import 'web-animations-js';
 
 /**
- * By default, zone.js will patch all possible macroTask and DomEvents
- * User can disable parts of macroTask/DomEvents patch by setting the following flags
- * because those flags need to be set before `zone.js` being loaded. Webpack
- * will put import in the top of the bundle, so user needs to create a separate file
- * in this directory (for example: zone-flags.ts), and put the following flags
- * into that file, and then add the following code before importing zone.js.
+ * Zone.js configuration flags (optional):
+ * To customize what Zone.js patches, create a file named zone-flags.ts in this
+ * directory and set the flags before importing Zone.js. For example:
+ *
+ * // zone-flags.ts
+ * // (window as any).__Zone_disable_requestAnimationFrame = true;
+ * // (window as any).__Zone_disable_on_property = true;
+ * // (window as any).__zone_symbol__UNPATCHED_EVENTS = ['scroll', 'mousemove'];
+ *
+ * Then import it here (above the Zone.js import):
  * import './zone-flags';
  *
- * The flags allowed in zone-flags.ts are listed here.
- *
- * The following flags will work for all browsers.
- *
- * (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
- * (window as any).__Zone_disable_on_property = true; // disable patch onProperty such as onclick
- * (window as any).__zone_symbol__UNPATCHED_EVENTS = ['scroll', 'mousemove']; // disable patch specified eventNames
- *
- * In IE/Edge developer tools, the addEventListener will also be wrapped by zone.js
- * With the following flag, it will bypass `zone.js` patch for IE/Edge
- * (window as any).__Zone_enable_cross_context_check = true;
+ * Keep any flags in a separate file so webpack places the import at the top
+ * of the bundle as required.
  */
 
 /***************************************************************************************************
@@ -61,3 +65,5 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  * APPLICATION IMPORTS
  */
 
+// Add any imports for files that must be loaded after Zone.js and before your
+// main entry point here. Keep polyfills minimal to reduce bundle size.
