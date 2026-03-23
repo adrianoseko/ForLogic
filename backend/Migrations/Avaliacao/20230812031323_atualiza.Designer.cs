@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using avaliacao.Data;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 #nullable disable
 
@@ -17,47 +18,67 @@ namespace backend.Migrations.Avaliacao
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
+            if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));
             ConfigureModel(modelBuilder);
         }
 
-        private void ConfigureModel(ModelBuilder modelBuilder)
+        /// <summary>
+        /// Configures model-level annotations and delegates entity configuration.
+        /// Kept separated to improve readability and maintainability while preserving
+        /// the exact EF Core model that this migration represents.
+        /// </summary>
+        private static void ConfigureModel(ModelBuilder modelBuilder)
         {
+            // Preserve EF Core product version and relational settings from the original migration
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
+            // Ensure SQL Server identity configuration is applied exactly as before
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            // Entity-specific configuration
             ConfigureAvaliacaoEntity(modelBuilder);
         }
 
-        private void ConfigureAvaliacaoEntity(ModelBuilder modelBuilder)
+        /// <summary>
+        /// Configures the Avaliacao entity using an EntityTypeBuilder for clearer structure.
+        /// Behavior is unchanged from the generated designer file.
+        /// </summary>
+        private static void ConfigureAvaliacaoEntity(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Avaliacao>(b =>
-            {
-                b.Property<int>(nameof(Avaliacao.Id))
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+            if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>(nameof(Avaliacao.Id)));
+            modelBuilder.Entity<Avaliacao>(entity => ConfigureAvaliacaoEntity(entity));
+        }
 
-                b.Property<int>(nameof(Avaliacao.Client))
-                    .HasColumnType("int");
+        private static void ConfigureAvaliacaoEntity(EntityTypeBuilder<Avaliacao> b)
+        {
+            if (b == null) throw new ArgumentNullException(nameof(b));
 
-                b.Property<DateTime>(nameof(Avaliacao.DataAvaliacao))
-                    .HasColumnType("datetime2");
+            b.Property<int>(nameof(Avaliacao.Id))
+                .ValueGeneratedOnAdd()
+                .HasColumnType("int");
 
-                b.Property<string>(nameof(Avaliacao.Motivo))
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+            // Keep SQL Server identity column usage identical to original
+            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>(nameof(Avaliacao.Id)));
 
-                b.Property<int>(nameof(Avaliacao.Nota))
-                    .HasColumnType("int");
+            b.Property<int>(nameof(Avaliacao.Client))
+                .HasColumnType("int");
 
-                b.HasKey(nameof(Avaliacao.Id));
+            b.Property<DateTime>(nameof(Avaliacao.DataAvaliacao))
+                .HasColumnType("datetime2");
 
-                b.ToTable("Avaliacao");
-            });
+            b.Property<string>(nameof(Avaliacao.Motivo))
+                .IsRequired()
+                .HasColumnType("nvarchar(max)");
+
+            b.Property<int>(nameof(Avaliacao.Nota))
+                .HasColumnType("int");
+
+            b.HasKey(nameof(Avaliacao.Id));
+
+            b.ToTable("Avaliacao");
         }
     }
 }
