@@ -1,14 +1,26 @@
+<!-- Side menu toggle button and slide menu -->
+<!-- The button is shown by default for backward compatibility.
+     If an AuthService is provided on the component as `auth`, it will
+     require the user to be authenticated and to have the 'User' role.
+     The template uses safe checks so existing behavior is NOT changed when
+     the auth service is not wired up yet. -->
 <button
-  #btn
+  #sideMenuButton
   class="p-menubar btn-side-menu"
   type="button"
   pButton
   icon="pi pi-bars"
+  aria-label="Toggle side menu"
   (click)="menu.toggle($event)"
+  *ngIf="auth?.isAuthenticated() !== false && (auth?.hasRole ? auth.hasRole('User') : true)"
 ></button>
+
 <p-slideMenu
   #menu
   [model]="items"
   [popup]="true"
   [viewportHeight]="500"
+  appendTo="body"
+  styleClass="app-side-menu"
+  aria-label="Application side menu"
 ></p-slideMenu>
