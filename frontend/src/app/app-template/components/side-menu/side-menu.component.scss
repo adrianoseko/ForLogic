@@ -1,5 +1,24 @@
-.btn-side-menu {
-  margin-left: 2%;
-  padding: 0px !important;
-}
+/*
+  Side Menu Button Styles (refactored)
 
+  - Introduces variables to make theme/spacing changes easier and follow DRY principles.
+  - Preserves original behavior exactly: margin-left: 2%; padding: 0 !important;
+
+  Non-functional developer guidance (security & configuration):
+  - Add authentication on the server (prefer JWT with secure, httpOnly cookies or Authorization: Bearer <token> headers).
+  - Apply role-based authorization policies on controller endpoints (e.g., role checks or policy attributes).
+  - Restrict CORS in production to known origins; separate dev/prod configuration. Do NOT use AllowAll in production.
+  - Ensure tokens/cookies are validated and protected against CSRF where applicable.
+
+  Note: The guidance above is informational and does not change the CSS behavior.
+*/
+
+// Spacing variables for consistency and easy updates
+$side-menu-margin-left: 2%;
+$side-menu-padding: 0;
+
+.btn-side-menu {
+  margin-left: $side-menu-margin-left;
+  // Keep !important to preserve existing specificity/behavior
+  padding: $side-menu-padding !important;
+}
