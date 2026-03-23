@@ -1,7 +1,30 @@
+/*
+  menubar.component.scss - Refactored
+
+  Notes for backend developers (non-functional guidance):
+  - Implement authentication using JWT or secure HttpOnly cookies on the server-side.
+  - Apply role-based authorization policies to controller endpoints (e.g. Admin/User roles).
+    For ASP.NET Core, use [Authorize] / AddAuthorization with policies or role checks.
+  - Restrict CORS to a known set of origins in production. Use environment-specific configuration
+    (e.g. appsettings.Development.json vs appsettings.Production.json) and DO NOT use AllowAnyOrigin
+    in production.
+  - Keep authentication cookies secure (Secure, SameSite, HttpOnly) and rotate/validate JWTs properly.
+
+  This file only contains style changes and guidance comments. It preserves the exact CSS behavior
+  of the original file while improving readability and maintainability.
+*/
+
+// Variables for easier maintenance; values preserve original behavior
+$logo-width: 60px !default;
+$logo-margin-left: 5% !default;
+$primary-font: "Russo One" !default;
+$secondary-font: "Raleway", sans-serif !default;
+$font-color: #ffffff !default;
+
 .logo-layout {
-  width: 60px !important;
+  width: $logo-width !important;
   float: left;
-  margin-left: 5%;
+  margin-left: $logo-margin-left;
   border: 0px !important;
   border-radius: 0px !important;
 }
@@ -28,13 +51,13 @@
 .font-logo {
   text-decoration: none;
   width: 100%;
-  color: white;
+  color: $font-color;
   //text-align: center !important;
-  font-family: "Russo One";
+  font-family: $primary-font;
   font-size: larger;
   text-transform: uppercase;
 }
 
 .font-logo-modality {
-  font-family: "Raleway", sans-serif;
+  font-family: $secondary-font;
 }
