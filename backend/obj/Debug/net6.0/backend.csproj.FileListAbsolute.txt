@@ -1,164 +1,318 @@
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\appsettings.json
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\backend.exe
-c:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\backend.deps.json
-c:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\backend.runtimeconfig.json
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\backend.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\backend.pdb
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.OpenApi.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\backend.csproj.AssemblyReference.cache
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\backend.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\backend.AssemblyInfoInputs.cache
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\backend.AssemblyInfo.cs
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\backend.csproj.CoreCompileInputs.cache
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\backend.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\backend.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\scopedcss\bundle\backend.styles.css
-c:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\backend.csproj.CopyComplete
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\backend.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\refint\backend.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\backend.pdb
-c:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\backend.genruntimeconfig.cache
-c:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\obj\Debug\net6.0\ref\backend.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Azure.Core.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Azure.Identity.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Identity.Client.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\System.Drawing.Common.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\System.Memory.Data.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\System.Runtime.Caching.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\System.Security.Permissions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\System.Windows.Extensions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Humanizer.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\Mono.TextTemplating.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\System.CodeDom.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\System.Text.Encodings.Web.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\System.Text.Json.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\prolect_ForLogic\backend\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\backend.csproj.AssemblyReference.cache
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\backend.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\backend.AssemblyInfoInputs.cache
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\backend.AssemblyInfo.cs
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\backend.csproj.CoreCompileInputs.cache
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\backend.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\backend.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\backend.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\refint\backend.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\backend.pdb
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\appsettings.json
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\backend.exe
-c:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\backend.deps.json
-c:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\backend.runtimeconfig.json
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\backend.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\backend.pdb
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Humanizer.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.OpenApi.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Mono.TextTemplating.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\System.CodeDom.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\System.Text.Encodings.Web.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\System.Text.Json.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\scopedcss\bundle\backend.styles.css
-c:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\backend.csproj.CopyComplete
-c:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\backend.genruntimeconfig.cache
-c:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\obj\Debug\net6.0\ref\backend.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Azure.Core.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Azure.Identity.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Identity.Client.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\System.Drawing.Common.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\System.Memory.Data.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\System.Runtime.Caching.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\System.Security.Permissions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\System.Windows.Extensions.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\adriano.moraes\Desktop\Nova pasta\project_ForLogic\backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+
+// Program.cs - Refactored and modernized minimal ASP.NET Core application
+// This file contains a complete minimal API + controller example with:
+// - JWT authentication
+// - Role-based authorization policies
+// - Environment-aware CORS configuration (restricted in production)
+// - Structured services following SOLID principles (simple IUserService abstraction)
+// - Centralized error handling
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Load configuration and environment
+var configuration = builder.Configuration;
+var environment = builder.Environment;
+
+// Configure strongly-typed settings via configuration or environment variables
+var jwtOptions = new JwtOptions();
+configuration.GetSection("JwtOptions").Bind(jwtOptions);
+
+// If critical JWT config is missing, attempt to read from environment variables
+jwtOptions.Key ??= Environment.GetEnvironmentVariable("JWT_KEY");
+jwtOptions.Issuer ??= configuration["JwtOptions:Issuer"] ?? Environment.GetEnvironmentVariable("JWT_ISSUER");
+jwtOptions.Audience ??= configuration["JwtOptions:Audience"] ?? Environment.GetEnvironmentVariable("JWT_AUDIENCE"]);
+
+// Validate presence of required settings to avoid failing later with unclear errors
+if (string.IsNullOrWhiteSpace(jwtOptions.Key) || string.IsNullOrWhiteSpace(jwtOptions.Issuer) || string.IsNullOrWhiteSpace(jwtOptions.Audience))
+{
+    // Fail early with a clear message
+    throw new InvalidOperationException("JWT configuration is missing. Please provide JwtOptions:Key, JwtOptions:Issuer and JwtOptions:Audience in configuration or environment variables.");
+}
+
+// CORS configuration: restrict in production and read allowed origins from configuration
+var allowedOrigins = configuration.GetSection("AllowedOrigins").Get<string[]>();
+if (allowedOrigins == null || allowedOrigins.Length == 0)
+{
+    // Attempt environment variable fallback
+    var envOrigins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS");
+    if (!string.IsNullOrEmpty(envOrigins))
+    {
+        allowedOrigins = envOrigins.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+    }
+}
+
+if (!environment.IsDevelopment() && (allowedOrigins == null || allowedOrigins.Length == 0))
+{
+    throw new InvalidOperationException("CORS allowed origins must be configured for non-development environments. Set AllowedOrigins in configuration or ALLOWED_ORIGINS environment variable.");
+}
+
+// Register services
+builder.Services.AddSingleton(jwtOptions);
+builder.Services.AddSingleton<IUserService, InMemoryUserService>();
+
+builder.Services.AddControllers();
+
+// Configure authentication with JWT Bearer
+var keyBytes = Encoding.UTF8.GetBytes(jwtOptions.Key);
+var signingKey = new SymmetricSecurityKey(keyBytes);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = !environment.IsDevelopment();
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidIssuer = jwtOptions.Issuer,
+        ValidateAudience = true,
+        ValidAudience = jwtOptions.Audience,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = signingKey,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.FromSeconds(30)
+    };
+});
+
+// Authorization with role-based policies
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(PolicyNames.AdminOnly, policy => policy.RequireRole(RoleNames.Admin));
+    options.AddPolicy(PolicyNames.UserOrAdmin, policy => policy.RequireRole(RoleNames.User, RoleNames.Admin));
+});
+
+// Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DefaultCorsPolicy", policyBuilder =>
+    {
+        if (environment.IsDevelopment())
+        {
+            // Development: allow common dev origins but keep explicit list
+            policyBuilder.WithOrigins("http://localhost:3000", "http://localhost:4200")
+                         .AllowAnyHeader()
+                         .AllowAnyMethod()
+                         .AllowCredentials();
+        }
+        else
+        {
+            policyBuilder.WithOrigins(allowedOrigins!)
+                         .AllowAnyHeader()
+                         .AllowAnyMethod()
+                         .AllowCredentials();
+        }
+    });
+});
+
+// Add a minimal logging configuration for clarity
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+var app = builder.Build();
+
+// Global error handler middleware
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+        var ex = exceptionHandlerPathFeature?.Error;
+        logger.LogError(ex, "Unhandled exception");
+
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json";
+        var msg = new { Message = "An unexpected error occurred." };
+        await System.Text.Json.JsonSerializer.SerializeAsync(context.Response.Body, msg);
+    });
+});
+
+// Use configured middleware
+app.UseCors("DefaultCorsPolicy");
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+
+// Provide a small health endpoint
+app.MapGet("/health", () => Results.Ok(new { Status = "Healthy", Environment = environment.EnvironmentName }));
+
+app.Run();
+
+// Supporting DTOs, options and simple in-memory user service
+public sealed class JwtOptions
+{
+    public string? Key { get; set; }
+    public string? Issuer { get; set; }
+    public string? Audience { get; set; }
+    public int ExpiresMinutes { get; set; } = 60;
+}
+
+public static class RoleNames
+{
+    public const string Admin = "Admin";
+    public const string User = "User";
+}
+
+public static class PolicyNames
+{
+    public const string AdminOnly = "AdminOnly";
+    public const string UserOrAdmin = "UserOrAdmin";
+}
+
+public record LoginRequest(string Username, string Password);
+public record TokenResponse(string Token, DateTime ExpiresAt);
+
+public interface IUserService
+{
+    User? ValidateCredentials(string username, string password);
+    IEnumerable<User> GetAll();
+}
+
+public sealed class User
+{
+    public Guid Id { get; init; } = Guid.NewGuid();
+    public string Username { get; init; } = string.Empty;
+    public string PasswordHash { get; init; } = string.Empty; // NOTE: In production, use a proper password hasher
+    public string Role { get; init; } = RoleNames.User;
+}
+
+// Very small in-memory user service for demonstration and backward-compatibility
+public sealed class InMemoryUserService : IUserService
+{
+    private readonly List<User> _users;
+
+    public InMemoryUserService()
+    {
+        // Seed users. Passwords are plain text for demo only (preserve behavior if migrating from a repo that used simple passwords).
+        _users = new List<User>
+        {
+            new User { Username = "admin", PasswordHash = "admin123", Role = RoleNames.Admin },
+            new User { Username = "user", PasswordHash = "user123", Role = RoleNames.User }
+        };
+    }
+
+    public User? ValidateCredentials(string username, string password)
+    {
+        // Simple validation to preserve compatibility with original behavior that may have used clear-text passwords.
+        return _users.FirstOrDefault(u => string.Equals(u.Username, username, StringComparison.OrdinalIgnoreCase)
+                                           && u.PasswordHash == password);
+    }
+
+    public IEnumerable<User> GetAll() => _users.ToList();
+}
+
+// Controllers below are defined in this file to keep the sample self-contained.
+// In a real application, controllers should live in their own files.
+
+[ApiController]
+[Route("api/[controller]")]
+public sealed class AuthController : ControllerBase
+{
+    private readonly IUserService _userService;
+    private readonly JwtOptions _jwtOptions;
+
+    public AuthController(IUserService userService, JwtOptions jwtOptions)
+    {
+        _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+        _jwtOptions = jwtOptions ?? throw new ArgumentNullException(nameof(jwtOptions));
+    }
+
+    [HttpPost("login")]
+    [AllowAnonymous]
+    public ActionResult<TokenResponse> Login([FromBody] LoginRequest request)
+    {
+        if (request is null || string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password))
+        {
+            return BadRequest(new { Message = "Username and password must be provided." });
+        }
+
+        var user = _userService.ValidateCredentials(request.Username, request.Password);
+        if (user is null)
+        {
+            return Unauthorized(new { Message = "Invalid credentials." });
+        }
+
+        var tokenResult = GenerateToken(user, _jwtOptions);
+        return Ok(tokenResult);
+    }
+
+    private static TokenResponse GenerateToken(User user, JwtOptions options)
+    {
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Key!));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var claims = new List<Claim>
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Role, user.Role)
+        };
+
+        var now = DateTime.UtcNow;
+        var expires = now.AddMinutes(options.ExpiresMinutes);
+
+        var token = new JwtSecurityToken(
+            issuer: options.Issuer,
+            audience: options.Audience,
+            claims: claims,
+            notBefore: now,
+            expires: expires,
+            signingCredentials: creds);
+
+        var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+        return new TokenResponse(jwt, expires);
+    }
+}
+
+[ApiController]
+[Route("api/[controller]")]
+public sealed class UsersController : ControllerBase
+{
+    private readonly IUserService _userService;
+
+    public UsersController(IUserService userService)
+    {
+        _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+    }
+
+    // Only users with Admin role can call this
+    [HttpGet]
+    [Authorize(Policy = PolicyNames.AdminOnly)]
+    public ActionResult<IEnumerable<object>> GetAll()
+    {
+        var users = _userService.GetAll().Select(u => new { u.Id, u.Username, u.Role });
+        return Ok(users);
+    }
+
+    // Both User and Admin roles allowed
+    [HttpGet("me")]
+    [Authorize(Policy = PolicyNames.UserOrAdmin)]
+    public ActionResult<object> Me()
+    {
+        var name = User.Identity?.Name ?? User.FindFirst(ClaimTypes.Name)?.Value;
+        var role = User.FindFirst(ClaimTypes.Role)?.Value;
+        return Ok(new { Username = name, Role = role });
+    }
+}
