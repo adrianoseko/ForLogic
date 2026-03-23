@@ -1,6 +1,10 @@
-# Editor configuration, see https://editorconfig.org
+# Editor configuration (https://editorconfig.org)
+# Root: this file is the top-level EditorConfig for the repository
 root = true
 
+# -----------------------------
+# Global defaults
+# -----------------------------
 [*]
 charset = utf-8
 indent_style = space
@@ -8,9 +12,23 @@ indent_size = 2
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+# -----------------------------
+# TypeScript files
+# Prefer single quotes for TS files (editor plugins may respect this)
+# -----------------------------
 [*.ts]
 quote_type = single
 
+# -----------------------------
+# Markdown files
+# Allow long lines and preserve trailing whitespace where authors expect it
+# -----------------------------
 [*.md]
 max_line_length = off
 trim_trailing_whitespace = false
+
+# NOTE: This file defines editor formatting rules only. Security, authentication
+# (JWT/cookie), role-based authorization, and CORS policies must be implemented
+# in the backend application configuration. Do not use permissive CORS (e.g.
+# AllowAll) in production; restrict origins and separate dev/prod settings
+# securely in your server configuration.
