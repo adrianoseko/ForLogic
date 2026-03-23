@@ -6,19 +6,41 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace backend.Migrations.Avaliacao
 {
     /// <summary>
-    /// Migration to create the Avaliacao table.
+    /// Migration that creates the "Avaliacao" table.
+    /// Note: Authentication and role-based authorization are application-level concerns
+    /// and should be implemented in controllers and middleware. This migration only
+    /// defines the database schema and preserves existing behavior.
     /// </summary>
     public partial class CreateAvaliacaoTable : Migration
     {
+        // Centralized names to avoid magic strings and make future refactors safer.
+        private const string TableName = "Avaliacao";
+
+        private static class Columns
+        {
+            public const string Id = "Id";
+            public const string DataAvaliacao = "DataAvaliacao";
+            public const string ClientId = "ClientId";
+            public const string Nota = "Nota";
+            public const string Motivo = "Motivo";
+        }
+
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            if (migrationBuilder == null)
+            {
+                throw new ArgumentNullException(nameof(migrationBuilder));
+            }
+
             migrationBuilder.CreateTable(
-                name: "Avaliacao",
+                name: TableName,
                 columns: table => new
                 {
+                    // Id column with SQL Server identity configuration preserved.
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+
                     DataAvaliacao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     Nota = table.Column<int>(type: "int", nullable: false),
@@ -26,14 +48,19 @@ namespace backend.Migrations.Avaliacao
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Avaliacao", x => x.Id);
+                    table.PrimaryKey($"PK_{TableName}", x => x.Id);
                 });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(name: "Avaliacao");
+            if (migrationBuilder == null)
+            {
+                throw new ArgumentNullException(nameof(migrationBuilder));
+            }
+
+            migrationBuilder.DropTable(name: TableName);
         }
     }
 }
