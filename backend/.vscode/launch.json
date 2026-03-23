@@ -1,7 +1,41 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // Launch configurations intentionally left empty.
+    // This file uses JSON with comments (jsonc). Keeping "configurations" empty prevents accidental
+    // debug profiles from being committed for different environments.
+    //
+    // Developer Guidance (informational only - not active configuration):
+    //
+    // Authentication & Authorization:
+    //   - Implement JWT or cookie-based auth inside your application (for example, in an ASP.NET Core
+    //     app use AddAuthentication / AddCookie / AddJwtBearer and configure secure cookie flags).
+    //   - Protect controller endpoints with role-based authorization attributes or policies.
+    //     Example (ASP.NET Core):
+    //       services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)...
+    //       services.AddAuthorization(options => {
+    //           options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    //       });
+    //       [Authorize(Policy = "AdminOnly")]
+    //
+    // CORS and Environment Separation:
+    //   - Restrict CORS to known origins in production. Do NOT use AllowAnyOrigin/AllowAnyHeader/AllowAnyMethod
+    //     in production.
+    //   - Prefer reading allowed origins from configuration or a secret store (e.g. Configuration["AllowedOrigins"]).
+    //     Example:
+    //       services.AddCors(options => {
+    //           options.AddPolicy("Default", builder =>
+    //               builder.WithOrigins(Configuration["AllowedOrigins"].Split(','))
+    //                      .AllowAnyHeader()
+    //                      .AllowAnyMethod());
+    //       });
+    //
+    // Configuration management best practices:
+    //   - Separate development and production configuration (appsettings.Development.json, environment variables,
+    //     and secret stores like Key Vault).
+    //   - Do not commit secrets. Use environment variables or a secrets manager.
+    //   - Keep local developer debug configurations out of source control (e.g., add .vscode/launch.local.json to .gitignore).
+    //
+    // If you want to add debug configurations for local development, add them to a local, ignored file or
+    // provide example templates here as comments only.
     "version": "0.2.0",
     "configurations": []
 }
