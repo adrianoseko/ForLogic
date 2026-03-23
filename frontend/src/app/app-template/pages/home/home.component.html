@@ -1,24 +1,77 @@
-<app-menubar></app-menubar>
-<div>
-  <p-card header="Bem Vindo !">
-    <p class="m-0">
-      Selecione ação que deseja realizar:
-    </p>
-    <div style="margin-top: 1%;">
-      <tr>
-        <td>
-          <p-selectButton [options]="paymentOptions" [(ngModel)]="value" [multiple]="true" optionLabel="name"
-            optionValue="value" (click)="onPaymentOptionChange()"></p-selectButton>
-        </td>
-        <td>
-          <p-button icon="pi pi-backward" (click)="backHome()"></p-button>
-        </td>
-      </tr>
-    </div>
-  </p-card>
-</div>
+<!--
+  Refactored Home Component Template
+  - Replaced table layout with semantic, accessible markup
+  - Improved naming and structure for readability and maintainability
+  - Added inline TODO notes describing where to integrate authentication (JWT/cookie) and role-based authorization
+  - Left original bindings and behavior untouched to preserve functionality
+  NOTE: Authentication, role-based authorization for controller endpoints and CORS restrictions must be implemented in the backend/services.
+-->
 
-<app-cliente *ngIf="selectedAction == 1"></app-cliente>
-<app-avaliacao *ngIf="selectedAction == 2"></app-avaliacao>
-<app-users *ngIf="selectedAction == 3"></app-users>
-<app-nps *ngIf="selectedAction == 4"></app-nps>
+<app-menubar></app-menubar>
+
+<main class="home-page" role="main">
+  <section aria-labelledby="welcome-title" class="welcome-card">
+    <p-card header="Bem Vindo !">
+      <h2 id="welcome-title" class="m-0 sr-only">Bem Vindo</h2>
+
+      <p class="m-0">
+        Selecione ação que deseja realizar:
+      </p>
+
+      <div class="action-controls" style="margin-top: 1%; display:flex; align-items:center; gap:0.5rem;">
+        <!-- NOTE: kept original bindings (paymentOptions, value, onPaymentOptionChange, backHome) to preserve behavior -->
+        <div class="control-select" style="flex:1;">
+          <p-selectButton
+            [options]="paymentOptions"
+            [(ngModel)]="value"
+            [multiple]="true"
+            optionLabel="name"
+            optionValue="value"
+            (click)="onPaymentOptionChange()"
+            aria-label="Opções de Ação">
+          </p-selectButton>
+        </div>
+
+        <div class="control-button">
+          <p-button
+            type="button"
+            icon="pi pi-backward"
+            (click)="backHome()"
+            aria-label="Voltar">
+          </p-button>
+        </div>
+      </div>
+    </p-card>
+  </section>
+
+  <!--
+    NOTE: These sections render the same components as before depending on selectedAction.
+    - Keep the loose equality (==) to preserve original behavior in case selectedAction may be a string.
+    - To integrate role-based rendering, wrap or replace these *ngIf checks with an authorization check like:
+      *ngIf="selectedAction == 1 && authService.hasRole('ROLE_CLIENT')"
+    Implement the authService and role checks in the component and backend.
+  -->
+  <section *ngIf="selectedAction == 1" aria-label="Cliente section">
+    <app-cliente></app-cliente>
+  </section>
+
+  <section *ngIf="selectedAction == 2" aria-label="Avaliacao section">
+    <app-avaliacao></app-avaliacao>
+  </section>
+
+  <section *ngIf="selectedAction == 3" aria-label="Users section">
+    <app-users></app-users>
+  </section>
+
+  <section *ngIf="selectedAction == 4" aria-label="NPS section">
+    <app-nps></app-nps>
+  </section>
+</main>
+
+<!--
+  SECURITY / ARCHITECTURE NOTES (Backend):
+  - Authentication: Use JWT or secure, httpOnly cookie-based authentication. Tokens should be validated on each request.
+  - Authorization: Implement role-based policies on controller endpoints (e.g., @Authorize("ROLE_ADMIN"), policy handlers, or middleware).
+  - CORS: Restrict allowed origins in production. Do not use AllowAll in production. Configure separate environments for dev/prod and load origins from secure configuration (env vars, secrets manager).
+  - Frontend: Protect sensitive UI/actions by checking user roles from a central AuthService and avoid relying solely on client-side checks for security.
+-->
